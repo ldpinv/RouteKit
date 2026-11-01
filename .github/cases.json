@@ -1,0 +1,318 @@
+[
+  {
+    "host": "api.openai.com",
+    "policy": "AI"
+  },
+  {
+    "host": "chatgpt.com",
+    "policy": "AI"
+  },
+  {
+    "host": "cdn.oaistatic.com",
+    "policy": "AI"
+  },
+  {
+    "host": "files.oaiusercontent.com",
+    "policy": "AI"
+  },
+  {
+    "host": "claude.ai",
+    "policy": "AI"
+  },
+  {
+    "host": "api.anthropic.com",
+    "policy": "AI"
+  },
+  {
+    "host": "gemini.google.com",
+    "policy": "AI"
+  },
+  {
+    "host": "generativelanguage.googleapis.com",
+    "policy": "AI"
+  },
+  {
+    "host": "aistudio.google.com",
+    "policy": "AI"
+  },
+  {
+    "host": "api.githubcopilot.com",
+    "policy": "AI"
+  },
+  {
+    "host": "copilot.microsoft.com",
+    "policy": "AI"
+  },
+  {
+    "host": "www.perplexity.ai",
+    "policy": "AI"
+  },
+  {
+    "host": "grok.com",
+    "policy": "AI"
+  },
+  {
+    "host": "api.x.ai",
+    "policy": "AI"
+  },
+  {
+    "host": "api.cursor.sh",
+    "policy": "AI"
+  },
+  {
+    "host": "www.poe.com",
+    "policy": "AI"
+  },
+  {
+    "host": "api.deepseek.com",
+    "policy": "Internal"
+  },
+  {
+    "host": "www.doubao.com",
+    "policy": "Internal"
+  },
+  {
+    "host": "www.youtube.com",
+    "policy": "Streaming"
+  },
+  {
+    "host": "r1.googlevideo.com",
+    "policy": "Streaming"
+  },
+  {
+    "host": "i.ytimg.com",
+    "policy": "Streaming"
+  },
+  {
+    "host": "www.netflix.com",
+    "policy": "Streaming"
+  },
+  {
+    "host": "www.disneyplus.com",
+    "policy": "Streaming"
+  },
+  {
+    "host": "api.spotify.com",
+    "policy": "Streaming"
+  },
+  {
+    "host": "www.twitch.tv",
+    "policy": "Streaming"
+  },
+  {
+    "host": "api.telegram.org",
+    "policy": "Telegram"
+  },
+  {
+    "host": "t.me",
+    "policy": "Telegram"
+  },
+  {
+    "host": "www.paypal.com",
+    "policy": "PayPal"
+  },
+  {
+    "host": "www.paypalobjects.com",
+    "policy": "PayPal"
+  },
+  {
+    "host": "www.bilibili.com",
+    "policy": "Bilibili"
+  },
+  {
+    "host": "www.bilibili.tv",
+    "policy": "Streaming"
+  },
+  {
+    "host": "www.google.com",
+    "policy": "Google"
+  },
+  {
+    "host": "www.apple.com",
+    "policy": "DIRECT"
+  },
+  {
+    "host": "gs-loc.apple.com",
+    "policy": "DIRECT"
+  },
+  {
+    "host": "www.baidu.com",
+    "policy": "Internal"
+  },
+  {
+    "host": "www.jd.com",
+    "policy": "Internal"
+  },
+  {
+    "host": "www.github.com",
+    "policy": "Global"
+  },
+  {
+    "host": "not-google.example",
+    "policy": "Final"
+  },
+  {
+    "host": "openai.com.attacker.example",
+    "policy": "Final"
+  },
+  {
+    "host": "paypal.com.attacker.example",
+    "policy": "Final"
+  },
+  {
+    "host": "api.not-listed.example",
+    "policy": "Final"
+  },
+  {
+    "host": "203.0.113.7",
+    "policy": "Final"
+  },
+  {
+    "host": "2001:db8::123",
+    "policy": "Final"
+  },
+  {
+    "host": "91.108.4.1",
+    "policy": "Telegram"
+  },
+  {
+    "host": "icloud.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "chatgpt-async-webps-prod-westus-01.webpubsub.azure.com",
+    "policy": "AI"
+  },
+  {
+    "host": "unrelated.webpubsub.azure.com",
+    "policy": "Final"
+  },
+  {
+    "host": "alkalimakersuite-pa.clients6.google.com",
+    "policy": "AI"
+  },
+  {
+    "host": "notebooklm.google.com",
+    "policy": "AI"
+  },
+  {
+    "host": "notebooklm.google",
+    "policy": "AI"
+  },
+  {
+    "host": "api.openrouter.ai",
+    "policy": "AI"
+  },
+  {
+    "host": "api.mistral.ai",
+    "policy": "AI"
+  },
+  {
+    "host": "api.groq.com",
+    "policy": "AI"
+  },
+  {
+    "host": "www.midjourney.com",
+    "policy": "AI"
+  },
+  {
+    "host": "suno.com",
+    "policy": "AI"
+  },
+  {
+    "host": "udio.com",
+    "policy": "AI"
+  },
+  {
+    "host": "runwayml.com",
+    "policy": "AI"
+  },
+  {
+    "host": "replicate.com",
+    "policy": "AI"
+  },
+  {
+    "host": "stability.ai",
+    "policy": "AI"
+  },
+  {
+    "host": "firefly.adobe.com",
+    "policy": "AI"
+  },
+  {
+    "host": "api.fireworks.ai",
+    "policy": "AI"
+  },
+  {
+    "host": "www.together.ai",
+    "policy": "AI"
+  },
+  {
+    "host": "leonardo.ai",
+    "policy": "AI"
+  },
+  {
+    "host": "fal.ai",
+    "policy": "AI"
+  },
+  {
+    "host": "www.huggingface.co",
+    "policy": "AI"
+  },
+  {
+    "host": "api.elevenlabs.io",
+    "policy": "AI"
+  },
+  {
+    "host": "api.windsurf.com",
+    "policy": "AI"
+  },
+  {
+    "host": "chat.qwen.ai",
+    "policy": "Internal"
+  },
+  {
+    "host": "dashscope.aliyuncs.com",
+    "policy": "Internal"
+  },
+  {
+    "host": "yiyan.baidu.com",
+    "policy": "Internal"
+  },
+  {
+    "host": "yuanbao.tencent.com",
+    "policy": "Internal"
+  },
+  {
+    "host": "xinghuo.xfyun.cn",
+    "policy": "Internal"
+  },
+  {
+    "host": "api.moonshot.cn",
+    "policy": "Internal"
+  },
+  {
+    "host": "apiproxy-device-prod-nlb-test.elb.us-east-1.amazonaws.com",
+    "policy": "Streaming"
+  },
+  {
+    "host": "hses1.akamaized.net",
+    "policy": "Streaming"
+  },
+  {
+    "host": "unrelated.amazonaws.com",
+    "policy": "Global"
+  },
+  {
+    "host": "browser-intake-datadoghq.com",
+    "policy": "Final"
+  },
+  {
+    "host": "queue.fal.run",
+    "policy": "AI"
+  },
+  {
+    "host": "v3b.fal.media",
+    "policy": "AI"
+  }
+]

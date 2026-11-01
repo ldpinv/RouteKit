@@ -1,0 +1,12 @@
+.cache/
+__pycache__/
+*.pyc
+.DS_Store
+.env*
+Profile/
+profiles/
+private/
+*.p12
+*.pfx
+*.key
+*.pem

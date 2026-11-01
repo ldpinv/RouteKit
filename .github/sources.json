@@ -1,0 +1,555 @@
+{
+  "schema": 1,
+  "order": [
+    "reject",
+    "ai-cn",
+    "ai",
+    "paypal",
+    "streaming",
+    "telegram",
+    "bilibili",
+    "apple-cn",
+    "apple",
+    "google",
+    "direct",
+    "internal",
+    "global"
+  ],
+  "categories": {
+    "reject": {
+      "policy": "REJECT"
+    },
+    "ai-cn": {
+      "policy": "Internal"
+    },
+    "ai": {
+      "policy": "AI"
+    },
+    "paypal": {
+      "policy": "PayPal"
+    },
+    "streaming": {
+      "policy": "Streaming"
+    },
+    "telegram": {
+      "policy": "Telegram"
+    },
+    "bilibili": {
+      "policy": "Bilibili"
+    },
+    "apple-cn": {
+      "policy": "DIRECT"
+    },
+    "apple": {
+      "policy": "Apple"
+    },
+    "google": {
+      "policy": "Google"
+    },
+    "direct": {
+      "policy": "DIRECT"
+    },
+    "internal": {
+      "policy": "Internal"
+    },
+    "global": {
+      "policy": "Global"
+    }
+  },
+  "repositories": {
+    "v2fly": {
+      "repository": "v2fly/domain-list-community",
+      "branch": "master",
+      "license": "MIT"
+    },
+    "sukka": {
+      "repository": "SukkaLab/ruleset.skk.moe",
+      "branch": "master",
+      "license": "AGPL-3.0-only",
+      "source_repository": "https://github.com/SukkaW/Surge"
+    },
+    "ai-supplement": {
+      "repository": "VPSDance/ai-proxy-rules",
+      "branch": "main",
+      "license": "MIT"
+    }
+  },
+  "sources": [
+    {
+      "id": "dlc-ai-cn",
+      "category": "ai-cn",
+      "format": "dlc",
+      "lists": [
+        "category-ai-cn"
+      ]
+    },
+    {
+      "id": "dlc-ai-overseas",
+      "category": "ai",
+      "format": "dlc",
+      "lists": [
+        "category-ai-!cn",
+        "category-ai-ru"
+      ]
+    },
+    {
+      "id": "sukka-ai-supplement",
+      "category": "ai",
+      "repository": "sukka",
+      "path": "List/non_ip/ai.conf",
+      "snapshot": "vendor/sukka/List/non_ip/ai.conf",
+      "format": "surge"
+    },
+    {
+      "id": "sukka-apple-intelligence",
+      "category": "ai",
+      "repository": "sukka",
+      "path": "List/non_ip/apple_intelligence.conf",
+      "snapshot": "vendor/sukka/List/non_ip/apple_intelligence.conf",
+      "format": "surge"
+    },
+    {
+      "id": "dlc-paypal",
+      "category": "paypal",
+      "format": "dlc",
+      "lists": [
+        "paypal"
+      ]
+    },
+    {
+      "id": "dlc-streaming",
+      "category": "streaming",
+      "format": "dlc",
+      "lists": [
+        "youtube",
+        "netflix",
+        "disney",
+        "spotify",
+        "twitch"
+      ]
+    },
+    {
+      "id": "sukka-streaming",
+      "category": "streaming",
+      "repository": "sukka",
+      "path": "List/non_ip/stream.conf",
+      "snapshot": "vendor/sukka/List/non_ip/stream.conf",
+      "format": "surge"
+    },
+    {
+      "id": "dlc-telegram",
+      "category": "telegram",
+      "format": "dlc",
+      "lists": [
+        "telegram"
+      ]
+    },
+    {
+      "id": "dlc-bilibili",
+      "category": "bilibili",
+      "format": "dlc",
+      "lists": [
+        "bilibili"
+      ]
+    },
+    {
+      "id": "sukka-apple-cn",
+      "category": "apple-cn",
+      "repository": "sukka",
+      "path": "List/non_ip/apple_cn.conf",
+      "snapshot": "vendor/sukka/List/non_ip/apple_cn.conf",
+      "format": "surge"
+    },
+    {
+      "id": "sukka-apple-cdn",
+      "category": "apple-cn",
+      "repository": "sukka",
+      "path": "List/domainset/apple_cdn.conf",
+      "snapshot": "vendor/sukka/List/domainset/apple_cdn.conf",
+      "format": "domainset"
+    },
+    {
+      "id": "sukka-apple",
+      "category": "apple",
+      "repository": "sukka",
+      "path": "List/non_ip/apple_services.conf",
+      "snapshot": "vendor/sukka/List/non_ip/apple_services.conf",
+      "format": "surge"
+    },
+    {
+      "id": "dlc-apple",
+      "category": "apple",
+      "format": "dlc",
+      "lists": [
+        "apple"
+      ]
+    },
+    {
+      "id": "dlc-google",
+      "category": "google",
+      "format": "dlc",
+      "lists": [
+        "google"
+      ]
+    },
+    {
+      "id": "sukka-direct",
+      "category": "direct",
+      "repository": "sukka",
+      "path": "List/non_ip/direct.conf",
+      "snapshot": "vendor/sukka/List/non_ip/direct.conf",
+      "format": "surge"
+    },
+    {
+      "id": "dlc-china",
+      "category": "internal",
+      "format": "dlc",
+      "lists": [
+        "cn"
+      ]
+    },
+    {
+      "id": "sukka-domestic",
+      "category": "internal",
+      "repository": "sukka",
+      "path": "List/non_ip/domestic.conf",
+      "snapshot": "vendor/sukka/List/non_ip/domestic.conf",
+      "format": "surge"
+    },
+    {
+      "id": "sukka-global",
+      "category": "global",
+      "repository": "sukka",
+      "path": "List/non_ip/global.conf",
+      "snapshot": "vendor/sukka/List/non_ip/global.conf",
+      "format": "surge"
+    },
+    {
+      "id": "sukka-cdn",
+      "category": "global",
+      "repository": "sukka",
+      "path": "List/non_ip/cdn.conf",
+      "snapshot": "vendor/sukka/List/non_ip/cdn.conf",
+      "format": "surge"
+    },
+    {
+      "id": "sukka-cdn-domainset",
+      "category": "global",
+      "repository": "sukka",
+      "path": "List/domainset/cdn.conf",
+      "snapshot": "vendor/sukka/List/domainset/cdn.conf",
+      "format": "domainset"
+    },
+    {
+      "id": "telegram-official-cidr",
+      "category": "telegram",
+      "format": "cidr",
+      "url": "https://core.telegram.org/resources/cidr.txt",
+      "snapshot": "vendor/telegram/cidr.txt"
+    },
+    {
+      "id": "openai-official-voice",
+      "category": "ai",
+      "format": "voice-json",
+      "url": "https://openai.com/chatgpt-voice.json",
+      "snapshot": "vendor/openai/chatgpt-voice.json"
+    },
+    {
+      "id": "ai-supplement-global",
+      "category": "ai",
+      "repository": "ai-supplement",
+      "path": "rules/surge/global.list",
+      "snapshot": "vendor/ai-supplement/global.list",
+      "format": "surge",
+      "domains_only": true
+    },
+    {
+      "id": "ai-supplement-cn",
+      "category": "ai-cn",
+      "repository": "ai-supplement",
+      "path": "rules/surge/cn.list",
+      "snapshot": "vendor/ai-supplement/cn.list",
+      "format": "surge",
+      "domains_only": true
+    }
+  ],
+  "exclusions": [
+    {
+      "category": "ai",
+      "rule": "DOMAIN,browser-intake-datadoghq.com",
+      "reason": "Shared authentication/telemetry infrastructure. Preserve service-specific tenant hostnames instead of routing every customer through AI."
+    },
+    {
+      "category": "ai",
+      "rule": "DOMAIN-KEYWORD,datadog",
+      "reason": "Shared authentication/telemetry infrastructure. Preserve service-specific tenant hostnames instead of routing every customer through AI."
+    },
+    {
+      "category": "ai",
+      "rule": "DOMAIN-KEYWORD,openai",
+      "reason": "Broad substring replaced by the product-owned OpenAI/ChatGPT domain lists and bounded dynamic tenant rules."
+    },
+    {
+      "category": "ai",
+      "rule": "DOMAIN-KEYWORD,sentry",
+      "reason": "Shared authentication/telemetry infrastructure. Preserve service-specific tenant hostnames instead of routing every customer through AI."
+    },
+    {
+      "category": "ai",
+      "rule": "DOMAIN-KEYWORD,sift",
+      "reason": "Shared authentication/telemetry infrastructure. Preserve service-specific tenant hostnames instead of routing every customer through AI."
+    },
+    {
+      "category": "ai",
+      "rule": "DOMAIN-SUFFIX,auth0.com",
+      "reason": "Shared authentication/telemetry infrastructure. Preserve service-specific tenant hostnames instead of routing every customer through AI."
+    },
+    {
+      "category": "ai",
+      "rule": "DOMAIN-SUFFIX,sentry.io",
+      "reason": "Shared authentication/telemetry infrastructure. Preserve service-specific tenant hostnames instead of routing every customer through AI."
+    },
+    {
+      "category": "ai",
+      "rule": "IP-ASN,14061",
+      "reason": "Do not infer service ownership from third-party network ranges/ASNs. Official voice CIDRs are included separately."
+    },
+    {
+      "category": "ai",
+      "rule": "IP-ASN,399358",
+      "reason": "Do not infer service ownership from third-party network ranges/ASNs. Official voice CIDRs are included separately."
+    },
+    {
+      "category": "ai",
+      "rule": "IP-ASN,401518",
+      "reason": "Do not infer service ownership from third-party network ranges/ASNs. Official voice CIDRs are included separately."
+    },
+    {
+      "category": "ai",
+      "rule": "IP-CIDR,160.79.104.0/21",
+      "reason": "Do not infer service ownership from third-party network ranges/ASNs. Official voice CIDRs are included separately."
+    },
+    {
+      "category": "ai",
+      "rule": "IP-CIDR,199.47.142.0/23",
+      "reason": "Do not infer service ownership from third-party network ranges/ASNs. Official voice CIDRs are included separately."
+    },
+    {
+      "category": "ai",
+      "rule": "IP-CIDR,24.199.123.28/32",
+      "reason": "Do not infer service ownership from third-party network ranges/ASNs. Official voice CIDRs are included separately."
+    },
+    {
+      "category": "ai",
+      "rule": "IP-CIDR,64.23.132.171/32",
+      "reason": "Do not infer service ownership from third-party network ranges/ASNs. Official voice CIDRs are included separately."
+    },
+    {
+      "category": "ai",
+      "rule": "IP-CIDR6,2604:f20::/32",
+      "reason": "Do not infer service ownership from third-party network ranges/ASNs. Official voice CIDRs are included separately."
+    },
+    {
+      "category": "ai",
+      "rule": "IP-CIDR6,2607:6bc0::/32",
+      "reason": "Do not infer service ownership from third-party network ranges/ASNs. Official voice CIDRs are included separately."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,Antigravity",
+      "reason": "Preserved separately in dist/surge/macos-process/ai.list; unavailable in Egern/iOS."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,Antigravity.exe",
+      "reason": "Windows process; not applicable to the target clients."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,Augment",
+      "reason": "Preserved separately in dist/surge/macos-process/ai.list; unavailable in Egern/iOS."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,Augment.exe",
+      "reason": "Windows process; not applicable to the target clients."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,ChatGPT",
+      "reason": "Preserved separately in dist/surge/macos-process/ai.list; unavailable in Egern/iOS."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,ChatGPT.exe",
+      "reason": "Windows process; not applicable to the target clients."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,Claude",
+      "reason": "Preserved separately in dist/surge/macos-process/ai.list; unavailable in Egern/iOS."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,Claude.exe",
+      "reason": "Windows process; not applicable to the target clients."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,Codex",
+      "reason": "Preserved separately in dist/surge/macos-process/ai.list; unavailable in Egern/iOS."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,Codex.exe",
+      "reason": "Windows process; not applicable to the target clients."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,Cursor",
+      "reason": "Preserved separately in dist/surge/macos-process/ai.list; unavailable in Egern/iOS."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,Cursor.exe",
+      "reason": "Windows process; not applicable to the target clients."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,Windsurf",
+      "reason": "Preserved separately in dist/surge/macos-process/ai.list; unavailable in Egern/iOS."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,Windsurf.exe",
+      "reason": "Windows process; not applicable to the target clients."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,antigravity",
+      "reason": "Preserved separately in dist/surge/macos-process/ai.list; unavailable in Egern/iOS."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,augment",
+      "reason": "Preserved separately in dist/surge/macos-process/ai.list; unavailable in Egern/iOS."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,chatgpt",
+      "reason": "Preserved separately in dist/surge/macos-process/ai.list; unavailable in Egern/iOS."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,claude",
+      "reason": "Preserved separately in dist/surge/macos-process/ai.list; unavailable in Egern/iOS."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,claude.exe",
+      "reason": "Windows process; not applicable to the target clients."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,codex",
+      "reason": "Preserved separately in dist/surge/macos-process/ai.list; unavailable in Egern/iOS."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,cowork-svc.exe",
+      "reason": "Windows process; not applicable to the target clients."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,cursor",
+      "reason": "Preserved separately in dist/surge/macos-process/ai.list; unavailable in Egern/iOS."
+    },
+    {
+      "category": "ai",
+      "rule": "PROCESS-NAME,windsurf",
+      "reason": "Preserved separately in dist/surge/macos-process/ai.list; unavailable in Egern/iOS."
+    },
+    {
+      "category": "ai",
+      "rule": "URL-REGEX,https://www\\.google\\.com/.*continue=https://gemini\\.google\\.com.+",
+      "reason": "Shared Google HTTPS login URL cannot be assigned by hostname alone. Keep Google and AI on a consistent account exit; no added MITM."
+    }
+  ],
+  "replacements": [
+    {
+      "category": "ai",
+      "rule": "regexp,^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$",
+      "replace_with": [
+        "DOMAIN-WILDCARD,chatgpt-async-webps-prod-*-*.webpubsub.azure.com"
+      ],
+      "reason": "Bounded tenant hostname wildcard for both clients; slightly broader than the numeric regex, never all Azure."
+    },
+    {
+      "category": "ai",
+      "rule": "DOMAIN-KEYWORD,alkalimakersuite-pa.clients6.google.com",
+      "replace_with": [
+        "DOMAIN,alkalimakersuite-pa.clients6.google.com"
+      ],
+      "reason": "Use the complete API hostname instead of a substring."
+    },
+    {
+      "category": "ai",
+      "rule": "DOMAIN-KEYWORD,chatgpt-async-webps-prod",
+      "replace_with": [
+        "DOMAIN-WILDCARD,chatgpt-async-webps-prod-*-*.webpubsub.azure.com"
+      ],
+      "reason": "Constrain the dynamic OpenAI tenant to its actual Azure domain."
+    },
+    {
+      "category": "streaming",
+      "rule": "regexp,(^|\\.)apiproxy-device-prod-nlb-.+\\.amazonaws\\.com$",
+      "replace_with": [
+        "DOMAIN-WILDCARD,apiproxy-device-prod-nlb-*.amazonaws.com",
+        "DOMAIN-WILDCARD,*.apiproxy-device-prod-nlb-*.amazonaws.com"
+      ],
+      "reason": "Bounded Netflix AWS hostname patterns; preserves the original root/subdomain alternatives."
+    },
+    {
+      "category": "streaming",
+      "rule": "regexp,(^|\\.)apiproxy-website-nlb-prod-.+\\.amazonaws\\.com$",
+      "replace_with": [
+        "DOMAIN-WILDCARD,apiproxy-website-nlb-prod-*.amazonaws.com",
+        "DOMAIN-WILDCARD,*.apiproxy-website-nlb-prod-*.amazonaws.com"
+      ],
+      "reason": "Bounded Netflix AWS hostname patterns; preserves the original root/subdomain alternatives."
+    },
+    {
+      "category": "streaming",
+      "rule": "regexp,(^|\\.)dualstack\\.apiproxy-.+\\.amazonaws\\.com$",
+      "replace_with": [
+        "DOMAIN-WILDCARD,dualstack.apiproxy-*.amazonaws.com",
+        "DOMAIN-WILDCARD,*.dualstack.apiproxy-*.amazonaws.com"
+      ],
+      "reason": "Bounded Netflix AWS hostname patterns; preserves the original root/subdomain alternatives."
+    },
+    {
+      "category": "streaming",
+      "rule": "regexp,(^|\\.)dualstack\\.ichnaea-web-.+\\.amazonaws\\.com$",
+      "replace_with": [
+        "DOMAIN-WILDCARD,dualstack.ichnaea-web-*.amazonaws.com",
+        "DOMAIN-WILDCARD,*.dualstack.ichnaea-web-*.amazonaws.com"
+      ],
+      "reason": "Bounded Netflix AWS hostname patterns; preserves the original root/subdomain alternatives."
+    },
+    {
+      "category": "streaming",
+      "rule": "regexp,^hses[1-7]?\\.akamaized\\.net$",
+      "replace_with": [
+        "DOMAIN,hses.akamaized.net",
+        "DOMAIN,hses1.akamaized.net",
+        "DOMAIN,hses2.akamaized.net",
+        "DOMAIN,hses3.akamaized.net",
+        "DOMAIN,hses4.akamaized.net",
+        "DOMAIN,hses5.akamaized.net",
+        "DOMAIN,hses6.akamaized.net",
+        "DOMAIN,hses7.akamaized.net"
+      ],
+      "reason": "Expand the finite Hotstar pattern exactly."
+    }
+  ]
+}

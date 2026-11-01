@@ -1,0 +1,190 @@
+{
+  "local_rules_first": true,
+  "rules": [
+    {
+      "path": "custom/reject",
+      "phase": "custom",
+      "policy": "REJECT",
+      "rules": 0
+    },
+    {
+      "path": "custom/ai-cn",
+      "phase": "custom",
+      "policy": "Internal",
+      "rules": 0
+    },
+    {
+      "path": "custom/ai",
+      "phase": "custom",
+      "policy": "AI",
+      "rules": 3
+    },
+    {
+      "path": "custom/paypal",
+      "phase": "custom",
+      "policy": "PayPal",
+      "rules": 0
+    },
+    {
+      "path": "custom/streaming",
+      "phase": "custom",
+      "policy": "Streaming",
+      "rules": 0
+    },
+    {
+      "path": "custom/telegram",
+      "phase": "custom",
+      "policy": "Telegram",
+      "rules": 0
+    },
+    {
+      "path": "custom/bilibili",
+      "phase": "custom",
+      "policy": "Bilibili",
+      "rules": 0
+    },
+    {
+      "path": "custom/apple-cn",
+      "phase": "custom",
+      "policy": "DIRECT",
+      "rules": 0
+    },
+    {
+      "path": "custom/apple",
+      "phase": "custom",
+      "policy": "Apple",
+      "rules": 0
+    },
+    {
+      "path": "custom/google",
+      "phase": "custom",
+      "policy": "Google",
+      "rules": 0
+    },
+    {
+      "path": "custom/direct",
+      "phase": "custom",
+      "policy": "DIRECT",
+      "rules": 0
+    },
+    {
+      "path": "custom/internal",
+      "phase": "custom",
+      "policy": "Internal",
+      "rules": 0
+    },
+    {
+      "path": "custom/global",
+      "phase": "custom",
+      "policy": "Global",
+      "rules": 0
+    },
+    {
+      "path": "domains/reject",
+      "phase": "domains",
+      "policy": "REJECT",
+      "rules": 0
+    },
+    {
+      "path": "domains/ai-cn",
+      "phase": "domains",
+      "policy": "Internal",
+      "rules": 140
+    },
+    {
+      "path": "domains/ai",
+      "phase": "domains",
+      "policy": "AI",
+      "rules": 366
+    },
+    {
+      "path": "domains/paypal",
+      "phase": "domains",
+      "policy": "PayPal",
+      "rules": 245
+    },
+    {
+      "path": "domains/streaming",
+      "phase": "domains",
+      "policy": "Streaming",
+      "rules": 705
+    },
+    {
+      "path": "domains/telegram",
+      "phase": "domains",
+      "policy": "Telegram",
+      "rules": 21
+    },
+    {
+      "path": "domains/bilibili",
+      "phase": "domains",
+      "policy": "Bilibili",
+      "rules": 51
+    },
+    {
+      "path": "domains/apple-cn",
+      "phase": "domains",
+      "policy": "DIRECT",
+      "rules": 166
+    },
+    {
+      "path": "domains/apple",
+      "phase": "domains",
+      "policy": "Apple",
+      "rules": 1548
+    },
+    {
+      "path": "domains/google",
+      "phase": "domains",
+      "policy": "Google",
+      "rules": 670
+    },
+    {
+      "path": "domains/direct",
+      "phase": "domains",
+      "policy": "DIRECT",
+      "rules": 162
+    },
+    {
+      "path": "domains/internal",
+      "phase": "domains",
+      "policy": "Internal",
+      "rules": 7354
+    },
+    {
+      "path": "domains/global",
+      "phase": "domains",
+      "policy": "Global",
+      "rules": 4635
+    },
+    {
+      "path": "ip/ai",
+      "phase": "ip",
+      "policy": "AI",
+      "rules": 400
+    },
+    {
+      "path": "ip/telegram",
+      "phase": "ip",
+      "policy": "Telegram",
+      "rules": 11
+    },
+    {
+      "path": "ip/apple",
+      "phase": "ip",
+      "policy": "Apple",
+      "rules": 1
+    },
+    {
+      "builtin": "GEOIP,CN",
+      "no_resolve": true,
+      "policy": "Internal"
+    },
+    {
+      "builtin": "FINAL",
+      "dns_failed_surge": true,
+      "policy": "Final"
+    }
+  ],
+  "schema": 1
+}

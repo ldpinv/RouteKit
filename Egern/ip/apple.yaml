@@ -1,0 +1,5 @@
+# RouteKit / apple
+# Generated; edit Source/<category>.list. Sources and licenses: https://github.com/ldpinv/RouteKit
+no_resolve: true
+ip_cidr_set:
+  - "17.0.0.0/8"

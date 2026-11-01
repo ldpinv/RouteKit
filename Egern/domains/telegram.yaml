@@ -1,0 +1,25 @@
+# RouteKit / telegram
+# Generated; edit Source/<category>.list. Sources and licenses: https://github.com/ldpinv/RouteKit
+no_resolve: true
+domain_suffix_set:
+  - "cdn-telegram.org"
+  - "comments.app"
+  - "contest.com"
+  - "fragment.com"
+  - "graph.org"
+  - "quiz.directory"
+  - "t.me"
+  - "tdesktop.com"
+  - "telega.one"
+  - "telegra.ph"
+  - "telegram-cdn.org"
+  - "telegram.dog"
+  - "telegram.me"
+  - "telegram.org"
+  - "telegram.space"
+  - "telesco.pe"
+  - "tg.dev"
+  - "ton.org"
+  - "toncenter.com"
+  - "tx.me"
+  - "usercontent.dev"

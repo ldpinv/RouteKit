@@ -1,0 +1,16 @@
+# Optional Mac-only AI process supplement; do not import on iOS/Egern.
+# Place after local/override and mainland-AI domain rules; before generic services.
+PROCESS-NAME,Antigravity
+PROCESS-NAME,Augment
+PROCESS-NAME,ChatGPT
+PROCESS-NAME,Claude
+PROCESS-NAME,Codex
+PROCESS-NAME,Cursor
+PROCESS-NAME,Windsurf
+PROCESS-NAME,antigravity
+PROCESS-NAME,augment
+PROCESS-NAME,chatgpt
+PROCESS-NAME,claude
+PROCESS-NAME,codex
+PROCESS-NAME,cursor
+PROCESS-NAME,windsurf

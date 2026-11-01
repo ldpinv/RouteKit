@@ -1,0 +1,5 @@
+# Overseas AI additions. These rules take priority over upstream categories.
+# fal API / queue / media: https://fal.ai/docs/documentation
+DOMAIN-SUFFIX,fal.ai
+DOMAIN-SUFFIX,fal.run
+DOMAIN-SUFFIX,fal.media

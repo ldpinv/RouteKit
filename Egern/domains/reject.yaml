@@ -1,0 +1,4 @@
+# RouteKit / reject
+# Generated; edit Source/<category>.list. Sources and licenses: https://github.com/ldpinv/RouteKit
+no_resolve: true
+domain_set: []
