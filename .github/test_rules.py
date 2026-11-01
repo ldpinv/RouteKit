@@ -94,10 +94,10 @@ class CompiledRules(unittest.TestCase):
 
     def test_client_outputs_preserve_the_same_rules(self):
         for path, data in self.outputs.items():
-            if not path.startswith("List/") or "/macos-process/" in path:
+            if not path.startswith("Surge/") or "/macos-process/" in path:
                 continue
             surge = {line for line in data.decode().splitlines() if line and not line.startswith("#")}
-            yaml_path = path.replace("List/", "Egern/").replace(".list", ".yaml")
+            yaml_path = path.replace("Surge/", "Egern/").replace(".list", ".yaml")
             yaml = self.outputs[yaml_path].decode().splitlines()
             key = None
             mapped = set()
@@ -111,7 +111,7 @@ class CompiledRules(unittest.TestCase):
 
     def test_all_ip_artifacts_skip_resolution(self):
         for path, data in self.outputs.items():
-            if path.startswith("List/"):
+            if path.startswith("Surge/"):
                 for line in data.decode().splitlines():
                     if line.startswith(("IP-CIDR,", "IP-CIDR6,")):
                         self.assertTrue(line.endswith(",no-resolve"))

@@ -25,7 +25,7 @@ jobs:
       - name: Publish generated rules on main
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
-          git add List Egern .github/routing-order.json LICENSE
+          git add Surge Egern .github/routing-order.json LICENSE
           if git diff --cached --quiet; then
             exit 0
           fi

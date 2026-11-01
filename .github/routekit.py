@@ -420,12 +420,12 @@ def compile_rules(root, blobs, lock):
             stem = f"{phase}/{category}"
             order.append({"path": stem, "policy": categories[category]["policy"], "rules": len(rules), "phase": phase})
             stats[stem] = len(rules)
-            outputs[f"List/{stem}.list"] = render(rules, category, "surge")
+            outputs[f"Surge/{stem}.list"] = render(rules, category, "surge")
             outputs[f"Egern/{stem}.yaml"] = render(rules, category, "egern")
     order.append({"builtin": "GEOIP,CN", "policy": "Internal", "no_resolve": True})
     order.append({"builtin": "FINAL", "policy": "Final", "dns_failed_surge": True})
     outputs[".github/routing-order.json"] = dumps({"schema": 1, "rules": order, "local_rules_first": True}).encode()
-    outputs["List/macos-process/ai.list"] = (
+    outputs["Surge/macos-process/ai.list"] = (
         "# Optional Mac-only AI process supplement; do not import on iOS/Egern.\n"
         "# Place after local/override and mainland-AI domain rules; before generic services.\n"
         + "\n".join("PROCESS-NAME," + name for name in sorted(macos_ai)) + "\n"
@@ -496,7 +496,7 @@ def load_snapshots(root):
 
 def write_files(root, outputs, prune=False):
     if prune:
-        for directory in ("List", "Egern", ".cache/reports"):
+        for directory in ("Surge", "Egern", ".cache/reports"):
             for path in (root / directory).rglob("*") if (root / directory).exists() else ():
                 if path.is_file() and path.relative_to(root).as_posix() not in outputs:
                     path.unlink()
@@ -543,7 +543,7 @@ def validate_behavior(root, base, overrides):
 
 
 def check_public(root):
-    allowed = {".git", ".cache", ".gitignore", ".gitattributes", ".github", "AGENTS.md", "README.md", "LICENSE", "NOTICE.md", "Source", "List", "Egern", "Scripts", "Modules"}
+    allowed = {".git", ".cache", ".gitignore", ".gitattributes", ".github", "AGENTS.md", "README.md", "LICENSE", "NOTICE.md", "Source", "Surge", "Egern", "Scripts", "Modules"}
     extra = {p.name for p in root.iterdir() if p.name != ".DS_Store"} - allowed
     if extra:
         raise ValueError("Unexpected public-root entries: " + ", ".join(sorted(extra)))
@@ -583,7 +583,7 @@ def main():
                 raise ValueError("Unexpected empty ruleset: " + k)
             if n >= 20 and abs(after.get(k, 0) - n) / n > 0.30 and not args.allow_large_change:
                 raise ValueError("Large change requires review and --allow-large-change: " + k)
-        semantic = [p for p in outputs if p.startswith(("List/", "Egern/"))] + [".cache/reports/omitted.json"]
+        semantic = [p for p in outputs if p.startswith(("Surge/", "Egern/"))] + [".cache/reports/omitted.json"]
         if all(previous.get(p) == outputs[p] for p in semantic):
             print("No routing/source-filter changes; keep the existing pinned sources.")
             return
@@ -594,7 +594,7 @@ def main():
                 continue
             if not (ROOT / path).exists() or (ROOT / path).read_bytes() != expected:
                 raise ValueError("Generated file is stale: " + path)
-        for folder in ("List", "Egern"):
+        for folder in ("Surge", "Egern"):
             if any(p.is_file() and p.name != ".DS_Store" and p.relative_to(ROOT).as_posix() not in outputs for p in (ROOT / folder).rglob("*")):
                 raise ValueError("Unexpected generated file")
     else:

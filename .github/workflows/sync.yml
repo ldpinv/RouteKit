@@ -39,7 +39,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          git add .github/sources.lock.json .github/routing-order.json List Egern LICENSE
+          git add .github/sources.lock.json .github/routing-order.json Surge Egern LICENSE
           if git diff --cached --quiet; then
             echo "No upstream routing changes."
             exit 0

@@ -6,7 +6,7 @@ Surge / Egern 分流规则，以及自行维护的脚本和模块。真实配置
 
 ```text
 Source/    自定义规则，日常修改这里
-List/      自动生成的 Surge 规则
+Surge/      自动生成的 Surge 规则
 Egern/     自动生成的 Egern 规则
 Scripts/   独立维护的脚本（目前预留）
 Modules/   独立维护的模块（目前预留）
@@ -45,7 +45,7 @@ python3 .github/routekit.py sync
 
 规则 URL 前缀：
 
-- Surge：`https://raw.githubusercontent.com/ldpinv/RouteKit/main/List/`
+- Surge：`https://raw.githubusercontent.com/ldpinv/RouteKit/main/Surge/`
 - Egern：`https://raw.githubusercontent.com/ldpinv/RouteKit/main/Egern/`
 
 Surge 使用 `RULE-SET` 和 `.list`；Egern 使用原生 `rule_set` 和 `.yaml`。建议每 86400 秒更新。仓库只提供规则，不提供完整代理配置。
@@ -78,7 +78,7 @@ Surge 使用 `RULE-SET` 和 `.list`；Egern 使用原生 `rule_set` 和 `.yaml`�
 
 例如海外 AI 的地址：
 
-- [Surge AI](https://raw.githubusercontent.com/ldpinv/RouteKit/main/List/domains/ai.list)
+- [Surge AI](https://raw.githubusercontent.com/ldpinv/RouteKit/main/Surge/domains/ai.list)
 - [Egern AI](https://raw.githubusercontent.com/ldpinv/RouteKit/main/Egern/domains/ai.yaml)
 
 Surge IP 引用行也建议添加 `no-resolve`；Egern 产物已设置 `no_resolve: true`。修改规则归属后，应刷新涉及的列表并用新连接确认命中；客户端独立缓存多个 URL，不保证同时切换版本。
@@ -90,7 +90,7 @@ Surge IP 引用行也建议添加 `no-resolve`；Egern 产物已设置 `no_resol
 - 域名优先、IP 补充；不通过整个共享 CDN 或云平台网段猜测业务。
 - `no-resolve` 避免为了匹配 IP 规则主动解析，不等于强制远端 DNS。域名型代理能否由出口解析取决于协议和客户端；WireGuard 等 IP 隧道需另外核验。
 - 不在规则集里启用全局扩展匹配、MITM 或逐请求脚本。Google 和 Gemini 共用登录域名时，规则无法按域名区分每次登录意图；需要一致出口时由本地策略选择保证。
-- `List/macos-process/ai.list` 是可选的 Mac AI 进程补充；放在本地例外、custom 和国内 AI 域名规则之后。iOS / Egern 不加载它。
+- `Surge/macos-process/ai.list` 是可选的 Mac AI 进程补充；放在本地例外、custom 和国内 AI 域名规则之后。iOS / Egern 不加载它。
 
 ## 上游与许可
 
