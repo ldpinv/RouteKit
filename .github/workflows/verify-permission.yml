@@ -1,0 +1,28 @@
+name: Verify Actions PR permissions
+on:
+  push:
+    branches: [verification/actions-permissions-20261102]
+permissions:
+  contents: read
+  pull-requests: write
+  actions: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ldpinv/RouteKit
+    steps:
+      - name: Create and close a temporary verification PR
+        run: |
+          cat > /tmp/routekit-permission-check.md <<'BODY'
+          Verifies that GitHub Actions may create pull requests in this repository.
+
+          This temporary branch contains only a verification workflow. It does not change routing rules and will not be merged. The workflow closes this PR after successfully creating it.
+          BODY
+          pr_url=$(gh pr create --base main --head verification/actions-permissions-20261102 --title 'Verify Actions pull request permissions' --body-file /tmp/routekit-permission-check.md)
+          echo "Verification PR: $pr_url"
+          gh pr close "$pr_url"
+      - name: Run the upstream sync workflow
+        run: gh workflow run sync.yml --ref main
