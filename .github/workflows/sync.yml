@@ -11,12 +11,14 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  statuses: write
 concurrency:
   group: routekit-upstream-sync
   cancel-in-progress: false
 jobs:
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
@@ -39,23 +41,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          git add .github/sources.lock.json .github/routing-order.json Surge Egern LICENSE
+          base=$(git rev-parse HEAD)
+          git add .github/sources.lock.json .github/routing-order.json .github/licenses Surge Egern LICENSE
           if git diff --cached --quiet; then
             echo "No upstream routing changes."
             exit 0
           fi
-          mkdir -p .cache
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-          stats = json.loads(Path('.cache/reports/summary.json').read_text())
-          lines = ['Updates pinned public sources and regenerates both clients.', '',
-                   'Validation: routing regressions, format parity, AI coverage and deterministic build checks passed.', '',
-                   'Review source versions, category moves and rule counts before merging. Detailed build reports stay in the local cache.', '',
-                   '| Ruleset | Entries |', '| --- | ---: |']
-          lines += [f'| {key} | {value} |' for key, value in stats['rules'].items() if value]
-          Path('.cache/update-pr.md').write_text('\n'.join(lines) + '\n')
-          PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git switch -C automation/upstream
@@ -64,9 +55,17 @@ jobs:
             git fetch origin automation/upstream:refs/remotes/origin/automation/upstream
           fi
           git push --force-with-lease origin HEAD:refs/heads/automation/upstream
+          head=$(git rev-parse HEAD)
+          run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          python3 .github/review.py --base-ref "$base" --head "$head" --run-url "$run_url"
+          gh api --method POST "repos/$GITHUB_REPOSITORY/statuses/$head" \
+            -f state=success -f context='RouteKit / generated rules' \
+            -f description='生成、路由回归、双端一致性及确定性校验通过' \
+            -f target_url="$run_url" --silent
           existing=$(gh pr list --head automation/upstream --base main --json number --jq '.[0].number // empty')
           if [ -z "$existing" ]; then
-            gh pr create --base main --head automation/upstream --title 'Update public routing sources' --body-file .cache/update-pr.md
+            gh pr create --base main --head automation/upstream --title '更新公开分流规则' --body-file .cache/update-pr.md
           else
             gh pr edit "$existing" --body-file .cache/update-pr.md
           fi
+          cat .cache/update-pr.md >> "$GITHUB_STEP_SUMMARY"

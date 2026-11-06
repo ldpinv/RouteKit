@@ -1,5 +1,218 @@
 {
+  "dns": {
+    "default": "overseas",
+    "rules": [
+      {
+        "path": "Surge/dns/override-overseas.list",
+        "resolver": "overseas",
+        "rules": 0
+      },
+      {
+        "path": "Surge/dns/override-domestic.list",
+        "resolver": "domestic",
+        "rules": 0
+      },
+      {
+        "path": "Surge/custom/ai-cn.list",
+        "resolver": "domestic",
+        "rules": 0
+      },
+      {
+        "path": "Surge/custom/ai.list",
+        "resolver": "overseas",
+        "rules": 3
+      },
+      {
+        "path": "Surge/custom/paypal.list",
+        "resolver": "overseas",
+        "rules": 0
+      },
+      {
+        "path": "Surge/custom/streaming.list",
+        "resolver": "overseas",
+        "rules": 0
+      },
+      {
+        "path": "Surge/custom/telegram.list",
+        "resolver": "overseas",
+        "rules": 0
+      },
+      {
+        "path": "Surge/custom/bilibili.list",
+        "resolver": "domestic",
+        "rules": 0
+      },
+      {
+        "path": "Surge/custom/apple-cn.list",
+        "resolver": "domestic",
+        "rules": 0
+      },
+      {
+        "path": "Surge/custom/apple.list",
+        "resolver": "overseas",
+        "rules": 0
+      },
+      {
+        "path": "Surge/custom/google.list",
+        "resolver": "overseas",
+        "rules": 0
+      },
+      {
+        "path": "Surge/custom/direct.list",
+        "resolver": "overseas",
+        "rules": 0
+      },
+      {
+        "path": "Surge/custom/internal.list",
+        "resolver": "overseas",
+        "rules": 0
+      },
+      {
+        "path": "Surge/custom/global.list",
+        "resolver": "overseas",
+        "rules": 0
+      },
+      {
+        "path": "Surge/domains/ai-cn.list",
+        "resolver": "domestic",
+        "rules": 140
+      },
+      {
+        "path": "Surge/domains/ai.list",
+        "resolver": "overseas",
+        "rules": 366
+      },
+      {
+        "path": "Surge/domains/paypal.list",
+        "resolver": "overseas",
+        "rules": 245
+      },
+      {
+        "path": "Surge/domains/streaming.list",
+        "resolver": "overseas",
+        "rules": 705
+      },
+      {
+        "path": "Surge/domains/telegram.list",
+        "resolver": "overseas",
+        "rules": 21
+      },
+      {
+        "path": "Surge/domains/bilibili.list",
+        "resolver": "domestic",
+        "rules": 51
+      },
+      {
+        "path": "Surge/domains/apple-cn.list",
+        "resolver": "domestic",
+        "rules": 166
+      },
+      {
+        "path": "Surge/domains/apple.list",
+        "resolver": "overseas",
+        "rules": 1548
+      },
+      {
+        "path": "Surge/domains/google.list",
+        "resolver": "overseas",
+        "rules": 670
+      },
+      {
+        "path": "Surge/domains/direct.list",
+        "resolver": "overseas",
+        "rules": 162
+      },
+      {
+        "path": "Surge/dns/mainland.list",
+        "resolver": "domestic",
+        "rules": 7862
+      },
+      {
+        "path": "Surge/domains/global.list",
+        "resolver": "overseas",
+        "rules": 4636
+      }
+    ],
+    "upstreams": {
+      "domestic": [
+        "https://dns.alidns.com/dns-query",
+        "https://doh.pub/dns-query"
+      ],
+      "overseas": [
+        "https://dns.google/dns-query",
+        "https://cloudflare-dns.com/dns-query"
+      ]
+    }
+  },
   "local_rules_first": true,
+  "managed_rules": [
+    {
+      "path": "Surge/services/reject-drop.list",
+      "placement": "after-custom-before-ai",
+      "policy": "REJECT-DROP",
+      "rules": 32
+    },
+    {
+      "path": "Surge/services/reject.list",
+      "placement": "after-custom-before-ai",
+      "policy": "REJECT",
+      "rules": 374
+    },
+    {
+      "path": "Surge/services/reject-no-drop.list",
+      "placement": "after-custom-before-ai",
+      "policy": "REJECT-NO-DROP",
+      "rules": 46
+    },
+    {
+      "path": "Surge/services/wechat.list",
+      "placement": "after-google-before-general",
+      "policy": "DIRECT",
+      "rules": 341
+    },
+    {
+      "path": "Surge/services/dingtalk.list",
+      "placement": "after-google-before-general",
+      "policy": "DIRECT",
+      "rules": 11
+    },
+    {
+      "path": "Surge/services/speedtest.txt",
+      "placement": "after-google-before-general",
+      "policy": "Final",
+      "rules": 3472
+    },
+    {
+      "path": "Surge/services/microsoft.list",
+      "placement": "after-google-before-general",
+      "policy": "Global",
+      "rules": 136
+    },
+    {
+      "path": "Surge/services/reject-ip.list",
+      "placement": "ip-supplements",
+      "policy": "REJECT-DROP",
+      "rules": 784
+    },
+    {
+      "path": "Egern/services/reject.yaml",
+      "placement": "after-custom-before-ai",
+      "policy": "REJECT",
+      "rules": 6202
+    },
+    {
+      "path": "Egern/services/wechat.yaml",
+      "placement": "after-google-before-general",
+      "policy": "DIRECT",
+      "rules": 332
+    },
+    {
+      "path": "Egern/services/microsoft.yaml",
+      "placement": "after-google-before-general",
+      "policy": "Global",
+      "rules": 694
+    }
+  ],
   "rules": [
     {
       "path": "custom/reject",
@@ -186,5 +399,5 @@
       "policy": "Final"
     }
   ],
-  "schema": 1
+  "schema": 2
 }

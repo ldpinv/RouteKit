@@ -13,10 +13,14 @@ import re
 import subprocess
 import sys
 import tarfile
+import time
+import urllib.error
 import urllib.request
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
+
+import managed
 
 ROOT = Path(__file__).resolve().parents[1]
 DOMAIN_KINDS = {"DOMAIN", "DOMAIN-SUFFIX", "DOMAIN-WILDCARD"}
@@ -177,8 +181,15 @@ def parse_manual(path):
 
 def fetch(url):
     req = urllib.request.Request(url, headers={"User-Agent": "RouteKit/1.0 (+https://github.com/ldpinv/RouteKit)"})
-    with urllib.request.urlopen(req, timeout=45) as response:
-        data = response.read(25_000_001)
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=45) as response:
+                data = response.read(25_000_001)
+            break
+        except (urllib.error.URLError, TimeoutError):
+            if attempt == 2:
+                raise
+            time.sleep(attempt + 1)
     if not data or len(data) > 25_000_000:
         raise ValueError("Empty or oversized upstream response")
     return data
@@ -216,10 +227,12 @@ def unpack_dlc(archive):
     return dumps(files).encode(), license_data
 
 
-def acquire(config):
+def acquire(config, pinned=None):
     blobs, records, repos = {}, {}, {}
     for key, item in config["repositories"].items():
-        sha = repository_head(item["repository"], item["branch"])
+        previous = (pinned or {}).get("repositories", {}).get(key, {})
+        sha = previous.get("commit") if previous.get("repository") == item["repository"] else None
+        sha = sha or repository_head(item["repository"], item["branch"])
         repos[key] = {**item, "commit": sha}
     repo = repos["v2fly"]
     url = f"https://codeload.github.com/{repo['repository']}/tar.gz/{repo['commit']}"
@@ -228,7 +241,7 @@ def acquire(config):
     records["vendor/v2fly/data.json"] = {"url": url, "archive_sha256": digest(archive)}
     records["vendor/v2fly/LICENSE"] = {"url": f"https://raw.githubusercontent.com/{repo['repository']}/{repo['commit']}/LICENSE"}
     jobs = {}
-    for source in config["sources"]:
+    for source in config["sources"] + config.get("managed_sources", []):
         if source["format"] == "dlc":
             continue
         if "repository" in source:
@@ -240,8 +253,8 @@ def acquire(config):
     repo = repos["sukka"]
     jobs["vendor/sukka/LICENSE"] = f"https://raw.githubusercontent.com/{repo['repository']}/{repo['commit']}/LICENSE"
     for key, repo in repos.items():
-        if key not in {"sukka", "v2fly"}:
-            jobs[f"vendor/{key}/LICENSE"] = f"https://raw.githubusercontent.com/{repo['repository']}/{repo['commit']}/LICENSE"
+        if key not in {"sukka", "v2fly"} and repo.get("license_path", "LICENSE"):
+            jobs[f"vendor/{key}/LICENSE"] = f"https://raw.githubusercontent.com/{repo['repository']}/{repo['commit']}/{repo.get('license_path', 'LICENSE')}"
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
         pending = {pool.submit(fetch, url): (path, url) for path, url in jobs.items()}
         for future in concurrent.futures.as_completed(pending):
@@ -255,6 +268,10 @@ def acquire(config):
         if "url" in source:
             key = source["snapshot"]
             records[key]["content"] = blobs[key].decode("utf-8")
+            if pinned and key in pinned["files"] and "content" in pinned["files"][key]:
+                # Adding a source must not silently refresh non-versioned official feeds.
+                blobs[key] = pinned["files"][key]["content"].encode("utf-8")
+                records[key] = dict(pinned["files"][key])
     lock = {"schema": 2, "repositories": repos, "files": records}
     return blobs, lock
 
@@ -424,17 +441,24 @@ def compile_rules(root, blobs, lock):
             outputs[f"Egern/{stem}.yaml"] = render(rules, category, "egern")
     order.append({"builtin": "GEOIP,CN", "policy": "Internal", "no_resolve": True})
     order.append({"builtin": "FINAL", "policy": "Final", "dns_failed_surge": True})
-    outputs[".github/routing-order.json"] = dumps({"schema": 1, "rules": order, "local_rules_first": True}).encode()
     outputs["Surge/macos-process/ai.list"] = (
         "# Optional Mac-only AI process supplement; do not import on iOS/Egern.\n"
         "# Place after local/override and mainland-AI domain rules; before generic services.\n"
         + "\n".join("PROCESS-NAME," + name for name in sorted(macos_ai)) + "\n"
     ).encode()
+    extra_outputs, extra_stats, extra_manifest = managed.compile_compat(config, blobs)
+    outputs.update(extra_outputs)
+    dns_outputs, dns_manifest = managed.compile_dns(root, config, base, overrides, dlc, sys.modules[__name__])
+    outputs.update(dns_outputs)
+    outputs[".github/routing-order.json"] = dumps({
+        "schema": 2, "rules": order, "local_rules_first": True,
+        "managed_rules": extra_manifest, "dns": dns_manifest,
+    }).encode()
     omitted = sorted({json.dumps(x, sort_keys=True): x for x in omitted}.values(), key=lambda x: (x["category"], x["rule"], x["source"]))
     outputs[".cache/reports/omitted.json"] = dumps(omitted).encode()
     outputs[".cache/reports/transforms.json"] = dumps(sorted(transformed, key=lambda x: (x["category"], x["rule"], x["source"]))).encode()
     outputs[".cache/reports/shadowed.json"] = dumps(shadowed).encode()
-    outputs[".cache/reports/summary.json"] = dumps({"rules": stats, "omitted": len(omitted), "shadowed": len(shadowed), "raw_unique": {c: len(raw[c]) for c in categories}}).encode()
+    outputs[".cache/reports/summary.json"] = dumps({"rules": stats, "managed_rules": extra_stats, "omitted": len(omitted), "shadowed": len(shadowed), "raw_unique": {c: len(raw[c]) for c in categories}}).encode()
     def origins(category, rule):
         if rule.kind in IP_KINDS:
             net = ipaddress.ip_network(rule.value)
@@ -460,6 +484,8 @@ def compile_rules(root, blobs, lock):
         coverage[category] = entries
     outputs[".cache/reports/ai-coverage.json"] = dumps(coverage).encode()
     outputs["LICENSE"] = blobs["vendor/sukka/LICENSE"]
+    for source in ("nobyda", "blackmatrix", "repcz"):
+        outputs[f".github/licenses/{source}.txt"] = blobs[f"vendor/{source}/LICENSE"]
     return outputs, base, overrides
 
 
@@ -472,8 +498,9 @@ def load_snapshots(root):
         if path.is_absolute() or ".." in path.parts or not name.startswith("vendor/"):
             raise ValueError("Invalid snapshot path")
         cached = root / ".cache" / path
-        if cached.exists():
-            data = cached.read_bytes()
+        cached_data = cached.read_bytes() if cached.exists() else None
+        if cached_data is not None and digest(cached_data) == info["sha256"]:
+            data = cached_data
         elif "content" in info:
             data = info["content"].encode("utf-8")
         elif name == "vendor/v2fly/data.json":
@@ -483,7 +510,7 @@ def load_snapshots(root):
             data = fetch(info["url"])
         if digest(data) != info["sha256"]:
             raise ValueError(f"Snapshot hash mismatch: {name}")
-        if not cached.exists():
+        if cached_data != data:
             cached.parent.mkdir(parents=True, exist_ok=True)
             cached.write_bytes(data)
         return name, data
@@ -496,7 +523,7 @@ def load_snapshots(root):
 
 def write_files(root, outputs, prune=False):
     if prune:
-        for directory in ("Surge", "Egern", ".cache/reports"):
+        for directory in ("Surge", "Egern", ".github/licenses", ".cache/reports"):
             for path in (root / directory).rglob("*") if (root / directory).exists() else ():
                 if path.is_file() and path.relative_to(root).as_posix() not in outputs:
                     path.unlink()
@@ -559,7 +586,7 @@ def check_public(root):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=["sync", "build", "check", "stats"])
+    parser.add_argument("command", choices=["sync", "pin", "build", "check", "stats"])
     parser.add_argument("--allow-large-change", action="store_true")
     args = parser.parse_args()
     config = read_json(ROOT / ".github/sources.json")
@@ -568,6 +595,8 @@ def main():
     if args.command == "sync":
         previous, _, _ = compile_rules(ROOT, blobs, lock)
         blobs, lock = acquire(config)
+    elif args.command == "pin":
+        blobs, lock = acquire(config, pinned=lock)
     outputs, base, overrides = compile_rules(ROOT, blobs, lock)
     count = validate_behavior(ROOT, base, overrides)
     if args.command == "stats":
@@ -583,7 +612,15 @@ def main():
                 raise ValueError("Unexpected empty ruleset: " + k)
             if n >= 20 and abs(after.get(k, 0) - n) / n > 0.30 and not args.allow_large_change:
                 raise ValueError("Large change requires review and --allow-large-change: " + k)
-        semantic = [p for p in outputs if p.startswith(("Surge/", "Egern/"))] + [".cache/reports/omitted.json"]
+        before_managed = json.loads(previous[".cache/reports/summary.json"]).get("managed_rules", {})
+        after_managed = json.loads(outputs[".cache/reports/summary.json"]).get("managed_rules", {})
+        for key, old_count in before_managed.items():
+            new_count = after_managed.get(key, 0)
+            if old_count and not new_count:
+                raise ValueError("Unexpected empty managed ruleset: " + key)
+            if old_count >= 20 and abs(new_count - old_count) / old_count > 0.30 and not args.allow_large_change:
+                raise ValueError("Large managed change requires review: " + key)
+        semantic = [p for p in outputs if p.startswith(("Surge/", "Egern/", ".github/licenses/"))] + ["LICENSE", ".cache/reports/omitted.json"]
         if all(previous.get(p) == outputs[p] for p in semantic):
             print("No routing/source-filter changes; keep the existing pinned sources.")
             return
@@ -598,7 +635,7 @@ def main():
             if any(p.is_file() and p.name != ".DS_Store" and p.relative_to(ROOT).as_posix() not in outputs for p in (ROOT / folder).rglob("*")):
                 raise ValueError("Unexpected generated file")
     else:
-        if args.command == "sync":
+        if args.command in {"sync", "pin"}:
             write_files(ROOT, {**{".cache/" + p: b for p, b in blobs.items()}, ".github/sources.lock.json": dumps(lock).encode()})
         write_files(ROOT, outputs, prune=True)
     print(f"{args.command}: {count} routing cases passed; {sum(len(v) for v in base.values())} upstream rules + {sum(len(v) for v in overrides.values())} custom rules.")

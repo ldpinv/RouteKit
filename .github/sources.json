@@ -72,6 +72,27 @@
       "repository": "VPSDance/ai-proxy-rules",
       "branch": "main",
       "license": "MIT"
+    },
+    "nobyda": {
+      "repository": "NobyDa/Script",
+      "branch": "master",
+      "license": "GPL-3.0"
+    },
+    "blackmatrix": {
+      "repository": "blackmatrix7/ios_rule_script",
+      "branch": "master",
+      "license": "GPL-2.0"
+    },
+    "repcz": {
+      "repository": "Repcz/Tool",
+      "branch": "X",
+      "license": "MIT"
+    },
+    "legacy-egern": {
+      "repository": "jnlaoshu/MySelf",
+      "branch": "main",
+      "license": "NOASSERTION",
+      "license_path": null
     }
   },
   "sources": [
@@ -551,5 +572,297 @@
       ],
       "reason": "Expand the finite Hotstar pattern exactly."
     }
-  ]
+  ],
+  "managed_sources": [
+    {
+      "id": "sukka-reject-drop",
+      "repository": "sukka",
+      "path": "List/non_ip/reject-drop.conf",
+      "snapshot": "vendor/sukka/List/non_ip/reject-drop.conf",
+      "format": "surge",
+      "allowed_types": [
+        "DOMAIN",
+        "DOMAIN-SUFFIX",
+        "DOMAIN-KEYWORD",
+        "DOMAIN-WILDCARD",
+        "URL-REGEX",
+        "IP-CIDR",
+        "IP-CIDR6",
+        "IP-ASN",
+        "AND"
+      ]
+    },
+    {
+      "id": "sukka-reject",
+      "repository": "sukka",
+      "path": "List/non_ip/reject.conf",
+      "snapshot": "vendor/sukka/List/non_ip/reject.conf",
+      "format": "surge",
+      "allowed_types": [
+        "DOMAIN",
+        "DOMAIN-SUFFIX",
+        "DOMAIN-KEYWORD",
+        "DOMAIN-WILDCARD",
+        "URL-REGEX",
+        "IP-CIDR",
+        "IP-CIDR6",
+        "IP-ASN",
+        "AND"
+      ]
+    },
+    {
+      "id": "sukka-reject-no-drop",
+      "repository": "sukka",
+      "path": "List/non_ip/reject-no-drop.conf",
+      "snapshot": "vendor/sukka/List/non_ip/reject-no-drop.conf",
+      "format": "surge",
+      "allowed_types": [
+        "DOMAIN",
+        "DOMAIN-SUFFIX",
+        "DOMAIN-KEYWORD",
+        "DOMAIN-WILDCARD",
+        "URL-REGEX",
+        "IP-CIDR",
+        "IP-CIDR6",
+        "IP-ASN",
+        "AND"
+      ]
+    },
+    {
+      "id": "nobyda-wechat",
+      "repository": "nobyda",
+      "path": "Surge/WeChat.list",
+      "snapshot": "vendor/nobyda/Surge/WeChat.list",
+      "format": "surge",
+      "allowed_types": [
+        "DOMAIN",
+        "DOMAIN-SUFFIX",
+        "DOMAIN-KEYWORD",
+        "IP-CIDR",
+        "IP-CIDR6",
+        "USER-AGENT"
+      ]
+    },
+    {
+      "id": "blackmatrix-dingtalk",
+      "repository": "blackmatrix",
+      "path": "rule/Surge/DingTalk/DingTalk.list",
+      "snapshot": "vendor/blackmatrix/rule/Surge/DingTalk/DingTalk.list",
+      "format": "surge",
+      "allowed_types": [
+        "DOMAIN",
+        "DOMAIN-SUFFIX"
+      ]
+    },
+    {
+      "id": "sukka-speedtest",
+      "repository": "sukka",
+      "path": "List/domainset/speedtest.conf",
+      "snapshot": "vendor/sukka/List/domainset/speedtest.conf",
+      "format": "domainset"
+    },
+    {
+      "id": "sukka-microsoft_cdn",
+      "repository": "sukka",
+      "path": "List/non_ip/microsoft_cdn.conf",
+      "snapshot": "vendor/sukka/List/non_ip/microsoft_cdn.conf",
+      "format": "surge",
+      "allowed_types": [
+        "DOMAIN",
+        "DOMAIN-SUFFIX",
+        "DOMAIN-KEYWORD",
+        "DOMAIN-WILDCARD",
+        "URL-REGEX",
+        "IP-CIDR",
+        "IP-CIDR6",
+        "IP-ASN",
+        "AND"
+      ]
+    },
+    {
+      "id": "sukka-microsoft",
+      "repository": "sukka",
+      "path": "List/non_ip/microsoft.conf",
+      "snapshot": "vendor/sukka/List/non_ip/microsoft.conf",
+      "format": "surge",
+      "allowed_types": [
+        "DOMAIN",
+        "DOMAIN-SUFFIX",
+        "DOMAIN-KEYWORD",
+        "DOMAIN-WILDCARD",
+        "URL-REGEX",
+        "IP-CIDR",
+        "IP-CIDR6",
+        "IP-ASN",
+        "AND"
+      ]
+    },
+    {
+      "id": "sukka-reject-ip",
+      "repository": "sukka",
+      "path": "List/ip/reject.conf",
+      "snapshot": "vendor/sukka/List/ip/reject.conf",
+      "format": "surge",
+      "allowed_types": [
+        "DOMAIN",
+        "DOMAIN-SUFFIX",
+        "DOMAIN-KEYWORD",
+        "DOMAIN-WILDCARD",
+        "URL-REGEX",
+        "IP-CIDR",
+        "IP-CIDR6",
+        "IP-ASN",
+        "AND"
+      ]
+    },
+    {
+      "id": "repcz-reject",
+      "repository": "repcz",
+      "path": "Egern/Rules/Reject.yaml",
+      "snapshot": "vendor/repcz/Egern/Rules/Reject.yaml",
+      "format": "egern"
+    },
+    {
+      "id": "legacy-wechat",
+      "repository": "legacy-egern",
+      "path": "Egern/Rule/WeChat.yaml",
+      "snapshot": "vendor/legacy-egern/Egern/Rule/WeChat.yaml",
+      "format": "egern"
+    },
+    {
+      "id": "legacy-microsoft",
+      "repository": "legacy-egern",
+      "path": "Egern/Rule/Microsoft.yaml",
+      "snapshot": "vendor/legacy-egern/Egern/Rule/Microsoft.yaml",
+      "format": "egern"
+    },
+    {
+      "id": "repcz-microsoft",
+      "repository": "repcz",
+      "path": "Egern/Rules/Microsoft.yaml",
+      "snapshot": "vendor/repcz/Egern/Rules/Microsoft.yaml",
+      "format": "egern"
+    }
+  ],
+  "managed_outputs": [
+    {
+      "path": "Surge/services/reject-drop.list",
+      "format": "surge",
+      "sources": [
+        "sukka-reject-drop"
+      ],
+      "policy": "REJECT-DROP",
+      "placement": "after-custom-before-ai"
+    },
+    {
+      "path": "Surge/services/reject.list",
+      "format": "surge",
+      "sources": [
+        "sukka-reject"
+      ],
+      "policy": "REJECT",
+      "placement": "after-custom-before-ai"
+    },
+    {
+      "path": "Surge/services/reject-no-drop.list",
+      "format": "surge",
+      "sources": [
+        "sukka-reject-no-drop"
+      ],
+      "policy": "REJECT-NO-DROP",
+      "placement": "after-custom-before-ai"
+    },
+    {
+      "path": "Surge/services/wechat.list",
+      "format": "surge",
+      "sources": [
+        "nobyda-wechat"
+      ],
+      "policy": "DIRECT",
+      "placement": "after-google-before-general"
+    },
+    {
+      "path": "Surge/services/dingtalk.list",
+      "format": "surge",
+      "sources": [
+        "blackmatrix-dingtalk"
+      ],
+      "policy": "DIRECT",
+      "placement": "after-google-before-general"
+    },
+    {
+      "path": "Surge/services/speedtest.txt",
+      "format": "domainset",
+      "sources": [
+        "sukka-speedtest"
+      ],
+      "policy": "Final",
+      "placement": "after-google-before-general"
+    },
+    {
+      "path": "Surge/services/microsoft.list",
+      "format": "surge",
+      "sources": [
+        "sukka-microsoft_cdn",
+        "sukka-microsoft"
+      ],
+      "policy": "Global",
+      "placement": "after-google-before-general"
+    },
+    {
+      "path": "Surge/services/reject-ip.list",
+      "format": "surge",
+      "sources": [
+        "sukka-reject-ip"
+      ],
+      "policy": "REJECT-DROP",
+      "placement": "ip-supplements"
+    },
+    {
+      "path": "Egern/services/reject.yaml",
+      "format": "egern",
+      "sources": [
+        "repcz-reject"
+      ],
+      "policy": "REJECT",
+      "placement": "after-custom-before-ai"
+    },
+    {
+      "path": "Egern/services/wechat.yaml",
+      "format": "egern",
+      "sources": [
+        "legacy-wechat"
+      ],
+      "policy": "DIRECT",
+      "placement": "after-google-before-general"
+    },
+    {
+      "path": "Egern/services/microsoft.yaml",
+      "format": "egern",
+      "sources": [
+        "legacy-microsoft",
+        "repcz-microsoft"
+      ],
+      "policy": "Global",
+      "placement": "after-google-before-general"
+    }
+  ],
+  "dns": {
+    "domestic_categories": [
+      "ai-cn",
+      "bilibili",
+      "apple-cn"
+    ],
+    "mainland_dlc_list": "cn",
+    "upstreams": {
+      "domestic": [
+        "https://dns.alidns.com/dns-query",
+        "https://doh.pub/dns-query"
+      ],
+      "overseas": [
+        "https://dns.google/dns-query",
+        "https://cloudflare-dns.com/dns-query"
+      ]
+    }
+  }
 }
