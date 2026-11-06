@@ -180,7 +180,7 @@
       "path": "Surge/services/speedtest.txt",
       "placement": "after-google-before-general",
       "policy": "Final",
-      "rules": 3470
+      "rules": 3472
     },
     {
       "path": "Surge/services/microsoft.list",
@@ -192,7 +192,7 @@
       "path": "Surge/services/reject-ip.list",
       "placement": "ip-supplements",
       "policy": "REJECT-DROP",
-      "rules": 782
+      "rules": 784
     },
     {
       "path": "Egern/services/reject.yaml",

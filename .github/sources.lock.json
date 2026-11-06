@@ -3,17 +3,17 @@
     "vendor/ai-supplement/LICENSE": {
       "bytes": 1065,
       "sha256": "ab29e472d9d810530b24ba4c8733a46b24b97165eb4d5e49d7f5f073b8b7cd0c",
-      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/f294f84e46ce776659e68e329175db7ad2b24e14/LICENSE"
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/c38fd31af00f1ead4649bbd04557719071f90c19/LICENSE"
     },
     "vendor/ai-supplement/cn.list": {
       "bytes": 2226,
       "sha256": "71a5dc28bc86501f6ed8d726b9cebe51b20bf044c6f4e1f833ca4e9eca0e6d92",
-      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/f294f84e46ce776659e68e329175db7ad2b24e14/rules/surge/cn.list"
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/c38fd31af00f1ead4649bbd04557719071f90c19/rules/surge/cn.list"
     },
     "vendor/ai-supplement/global.list": {
       "bytes": 12276,
       "sha256": "3cb2b2d1b0911b1deec7bfd11fd4f809ef4c3b0ec2a9a6b9e3b1574853be2294",
-      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/f294f84e46ce776659e68e329175db7ad2b24e14/rules/surge/global.list"
+      "url": "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/c38fd31af00f1ead4649bbd04557719071f90c19/rules/surge/global.list"
     },
     "vendor/blackmatrix/LICENSE": {
       "bytes": 18092,
@@ -69,97 +69,97 @@
     "vendor/sukka/LICENSE": {
       "bytes": 34523,
       "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/LICENSE"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/LICENSE"
     },
     "vendor/sukka/List/domainset/apple_cdn.conf": {
       "bytes": 4628,
       "sha256": "0c81cbe6af3a1c3befbe973441bb5667caf817a9447fca55022182d015669180",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/domainset/apple_cdn.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/domainset/apple_cdn.conf"
     },
     "vendor/sukka/List/domainset/cdn.conf": {
       "bytes": 90124,
       "sha256": "0d762b5cb2515b465f9f936967ff7dcb31f25f86ba67456a3aca34d2c7090fdf",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/domainset/cdn.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/domainset/cdn.conf"
     },
     "vendor/sukka/List/domainset/speedtest.conf": {
-      "bytes": 89242,
-      "sha256": "7d8dee8a11c839b2075b13399efb31525fbb1dd7febb09dac645ab8312badd80",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/domainset/speedtest.conf"
+      "bytes": 89297,
+      "sha256": "cc0621362b7a28652564c52ea155cb976e96fece23ece625f6bfd310f4cc3e1a",
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/domainset/speedtest.conf"
     },
     "vendor/sukka/List/ip/reject.conf": {
-      "bytes": 22341,
-      "sha256": "ee6b6505e7f980e5668725bd9d6e046aab8e8e558ca810d16073ff69fa0ee756",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/ip/reject.conf"
+      "bytes": 22393,
+      "sha256": "1825c530c21920b6f883c11f04fe26da44f2e180845751bda5b25a8305442885",
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/ip/reject.conf"
     },
     "vendor/sukka/List/non_ip/ai.conf": {
       "bytes": 2125,
       "sha256": "055e56209c88a9306be210813e9e3ef175fdff4b90aaf05768953673bfbc9aea",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/non_ip/ai.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/non_ip/ai.conf"
     },
     "vendor/sukka/List/non_ip/apple_cn.conf": {
       "bytes": 826,
       "sha256": "a31f9e98c5a4fdd585a7c78b6f3a1994015ab54a57a3d82057bd17f278f6a76f",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/non_ip/apple_cn.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/non_ip/apple_cn.conf"
     },
     "vendor/sukka/List/non_ip/apple_intelligence.conf": {
       "bytes": 631,
       "sha256": "728d4a842e4507e042b929ed599b9a9a3de4e89ba4a29438594470dd40c1a5f8",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/non_ip/apple_intelligence.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/non_ip/apple_intelligence.conf"
     },
     "vendor/sukka/List/non_ip/apple_services.conf": {
       "bytes": 1157,
       "sha256": "9c32e8eb6e1d334a85b972791a0afc4b0fc81f57d3a80902a50c9168269f7602",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/non_ip/apple_services.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/non_ip/apple_services.conf"
     },
     "vendor/sukka/List/non_ip/cdn.conf": {
       "bytes": 3534,
       "sha256": "e942b399dcd6c636e620322b56ecb0deec09d61287b93ae60406f5c6e973a5ec",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/non_ip/cdn.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/non_ip/cdn.conf"
     },
     "vendor/sukka/List/non_ip/direct.conf": {
       "bytes": 6317,
       "sha256": "46c65d1a59289d07f52f7652f9d1695d2996f65c125a14593b3eb7322086f8ec",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/non_ip/direct.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/non_ip/direct.conf"
     },
     "vendor/sukka/List/non_ip/domestic.conf": {
       "bytes": 22760,
       "sha256": "0af51e348f438c4e66dce60f132e20aa7bac476664591f8ba383ed62e28819ed",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/non_ip/domestic.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/non_ip/domestic.conf"
     },
     "vendor/sukka/List/non_ip/global.conf": {
       "bytes": 33422,
       "sha256": "9b5e53dc90878f3d4fa6afd56916f46f630ffe9143196384ba6be6300a883bbb",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/non_ip/global.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/non_ip/global.conf"
     },
     "vendor/sukka/List/non_ip/microsoft.conf": {
       "bytes": 2714,
       "sha256": "1cc7293548c9f251adf9e373a57bfef3501f6e6756d8234aed5415a5ead4e439",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/non_ip/microsoft.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/non_ip/microsoft.conf"
     },
     "vendor/sukka/List/non_ip/microsoft_cdn.conf": {
       "bytes": 3076,
       "sha256": "9cc652e595d6782cae91b3960306777934ae8609b46d474e452c3e9099bcef7f",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/non_ip/microsoft_cdn.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/non_ip/microsoft_cdn.conf"
     },
     "vendor/sukka/List/non_ip/reject-drop.conf": {
       "bytes": 1443,
       "sha256": "3b82993861c30b4dbd8240fc160728fcd390804aaee51ac08d4dee398972af81",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/non_ip/reject-drop.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/non_ip/reject-drop.conf"
     },
     "vendor/sukka/List/non_ip/reject-no-drop.conf": {
       "bytes": 1908,
       "sha256": "e0d48603980bd4c5862b0727e93ab0446d2c22a2a814cf4e2cbb5da28b2b8254",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/non_ip/reject-no-drop.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/non_ip/reject-no-drop.conf"
     },
     "vendor/sukka/List/non_ip/reject.conf": {
       "bytes": 13667,
       "sha256": "a20731d45036217728e6324ac46acc34cf1b0ab077b63424c24fc500aa7a7d12",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/non_ip/reject.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/non_ip/reject.conf"
     },
     "vendor/sukka/List/non_ip/stream.conf": {
       "bytes": 10487,
       "sha256": "e35f4e37b3e1a39c6c2a1c09750299c4318feb72b65a6e79a18b4a2b39f44ce6",
-      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/841a963ffba52b5d5625099cc622c18454e4f7ce/List/non_ip/stream.conf"
+      "url": "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/67f155c4a6ef9138d1ddaa6451b31cce443e2cc3/List/non_ip/stream.conf"
     },
     "vendor/telegram/cidr.txt": {
       "bytes": 227,
@@ -170,19 +170,19 @@
     "vendor/v2fly/LICENSE": {
       "bytes": 1067,
       "sha256": "b9d84a22870d3f21c91a4c6e410c9cc51d00902f5233ad0c84011479244bf7d2",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/3895d9a3a76de2c1598a10c5fefc38e3481117fa/LICENSE"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/4af75ecfbd62c077f9f3ae68b0ae21b89fda1c60/LICENSE"
     },
     "vendor/v2fly/data.json": {
-      "archive_sha256": "e13391894a7abc9eb1033c818d5710a12959f0af7803567ec29907c5b042cef2",
-      "bytes": 887023,
-      "sha256": "fcb276d6e3e1ffc89613b5cc5ec47424f4fd53c1e0d078b12290d09c0fd0e441",
-      "url": "https://codeload.github.com/v2fly/domain-list-community/tar.gz/3895d9a3a76de2c1598a10c5fefc38e3481117fa"
+      "archive_sha256": "303c33f7a578781cd31a9fc608995017ebfbf96f2c1256d71a09891ade2525a4",
+      "bytes": 887126,
+      "sha256": "4cd0604eab1a3aa7d6656f69b41b5f4cd2e3b469a45e4731d9646c8212d0162a",
+      "url": "https://codeload.github.com/v2fly/domain-list-community/tar.gz/4af75ecfbd62c077f9f3ae68b0ae21b89fda1c60"
     }
   },
   "repositories": {
     "ai-supplement": {
       "branch": "main",
-      "commit": "f294f84e46ce776659e68e329175db7ad2b24e14",
+      "commit": "c38fd31af00f1ead4649bbd04557719071f90c19",
       "license": "MIT",
       "repository": "VPSDance/ai-proxy-rules"
     },
@@ -213,14 +213,14 @@
     },
     "sukka": {
       "branch": "master",
-      "commit": "841a963ffba52b5d5625099cc622c18454e4f7ce",
+      "commit": "67f155c4a6ef9138d1ddaa6451b31cce443e2cc3",
       "license": "AGPL-3.0-only",
       "repository": "SukkaLab/ruleset.skk.moe",
       "source_repository": "https://github.com/SukkaW/Surge"
     },
     "v2fly": {
       "branch": "master",
-      "commit": "3895d9a3a76de2c1598a10c5fefc38e3481117fa",
+      "commit": "4af75ecfbd62c077f9f3ae68b0ae21b89fda1c60",
       "license": "MIT",
       "repository": "v2fly/domain-list-community"
     }

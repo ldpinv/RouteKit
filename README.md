@@ -103,7 +103,7 @@ Surge 使用 `RULE-SET` 和 `.list`；Egern 使用原生 `rule_set` 和 `.yaml`�
 | 12 | internal | Internal |
 | 13 | global | Global |
 
-这些文件分类不增加策略组。`custom/` 中的空产物用于预留固定入口，首次接入后添加自定义规则就不用修改主配置。`reject` 默认为空，不附带大型广告库。完整生成顺序见 [.github/routing-order.json](.github/routing-order.json)。
+这些文件分类不增加策略组。`custom/` 中的空产物用于预留固定入口，首次接入后添加自定义规则就不用修改主配置。核心 `domains/reject` 默认为空；原配置的广告列表在 `services/` 中独立维护。完整生成顺序见 [.github/routing-order.json](.github/routing-order.json)。
 
 例如海外 AI 的地址：
 
