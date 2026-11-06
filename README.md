@@ -27,7 +27,7 @@ DOMAIN-SUFFIX,example.ai
 
 文件使用 Surge 规则语法，支持 `DOMAIN`、`DOMAIN-SUFFIX`、`IP-CIDR`、`IP-CIDR6`，不要填写策略名。人工规则优先于上游分类；不同策略的人工规则冲突时停止构建。IP 自动添加 `no-resolve`。
 
-直接在 GitHub 编辑并提交 `Source/` 后，Workflow 校验并生成两端规则。上游每天 **02:23 UTC / 11:23 日本时间** 检查一次，通过 PR 更新，合并后生效；不自动合并。
+直接在 GitHub 编辑并提交 `Source/` 后，Workflow 校验并生成两端规则。上游每天 **02:23 UTC** 检查一次，通过 PR 更新，合并后生效；不自动合并。
 
 本地维护使用 Python 3.9+，无需安装依赖：
 
@@ -37,9 +37,38 @@ python3 -m unittest discover -s .github
 python3 .github/routekit.py check
 # 手动获取新的上游版本
 python3 .github/routekit.py sync
+# 增加来源时，固定新来源，保留已有来源的提交版本
+python3 .github/routekit.py pin
 ```
 
 首次构建按固定提交下载上游并校验 SHA256，此后可使用缓存。同步遇到空数据、大幅变化或未审查的 AI 规则类型时不会发布。
+
+## 更新审核
+
+自动 PR 用中文列出新增、删除、相同规则的分类归属变化和 DNS 变更，展开即可看到具体规则。相同总数不代表内容相同；父域、通配符及规则顺序仍以 Files changed 为准。
+
+同步任务完成构建、测试和校验后，会给生成提交附加绿色 **RouteKit / generated rules** 状态，并链接到对应运行。这个状态只证明该提交的产物通过检查，不代表实际节点连通性或设备测试。
+
+GitHub 当前会要求人工批准由 GITHUB_TOKEN 创建的 PR 工作流；看到 **Approve workflows to run** 时，点击批准后等待独立检查完成，再人工合并。这不是规则测试失败，不应通过自动批准或自动合并掩盖。规则检查任务只有只读权限，发布任务仅在 main 校验成功后运行。
+
+## 额外业务规则
+
+`Surge/services/` 和 `Egern/services/` 统一管理原配置额外引用的 Microsoft、微信、广告等规则，来源与生成关系见 `.github/sources.json` 的 `managed_sources` / `managed_outputs`。它们固定到提交及 SHA256，跟随同一 PR 更新。
+
+Egern Microsoft 取两份原有公开列表的并集再去重，保留独有条目；Surge 合并原有 Microsoft / Microsoft CDN 列表。微信和广告保留两端原本的格式及处理差异。不同客户端的 services 文件不承诺逐条相同。
+
+services 仍放在原配置对应的位置：广告在 custom 之后、AI 之前；微信、钉钉、测速、Microsoft 在 Google 之后、通用分类之前；IP 广告补充在末尾 IP 区域。它们不新增本地策略组。Surge 的 `speedtest.txt` 是 DOMAIN-SET，其余 `.list` 使用 RULE-SET。单独有来源许可约束的 Sukka 国内 IP 文件仍保留外部引用，本轮没有复制它。
+
+## 统一 DNS 分类
+
+- [Surge DNS 片段](Surge/dns/forward.conf)：合并到 `[Host]`，保留私人 Host 映射在前。
+- [Egern DNS 片段](Egern/dns/forward.yaml)：合并到 `dns.forward`，保留私人 DNS 例外在前，并保留已有 Domestic-DoH / Overseas-DoH 上游定义。
+
+两个片段按同一优先级引用域名列表，Egern DNS 的 `proxy_rule_set` 支持 Surge/Clash 文本格式，因此直接复用 Surge 列表，避免维护两套 DNS 分类。排序为：本地名称 → DNS 人工覆盖 → 路由人工覆盖 → 业务分类 → 明确的国内域名源 → 海外兜底。AI-CN、Bilibili、AppleCN 使用国内 DNS；海外 AI 等保持海外 DNS。Internal 的 DNS 判断只取明确的国内域名源，不等同于所有可直连服务；手动将海外域名放入 Internal / DIRECT 也不会自动把它送往国内 DNS。
+
+如需单独改变 DNS，在 `Source/dns-domestic.list` 或 `Source/dns-overseas.list` 添加 DOMAIN / DOMAIN-SUFFIX；这些文件只改变 DNS，不改变路由策略。两个 DNS 覆盖文件有冲突时构建失败。首次接入后，已有 DNS 引用地址固定，日常改 Source 即可。
+
+本地名称使用系统 DNS，其他未知域名的本地解析默认使用海外 DNS。`no-resolve` 和代理协议决定是否需要本地解析；这些片段不强制每个代理出口重新解析，也不改变 `proxy_nameservers`。片段是生成的配置参考，不能把整个片段作为普通分流 rule_set 导入。Surge 须使用支持 Host 远程规则集映射的版本；移动端需实际导入验证。
 
 ## 客户端接入
 
