@@ -43,6 +43,7 @@ DOMAIN,gateway.bingviz.microsoftapp.net
 DOMAIN,geminiweb-pa.clients.google.com
 DOMAIN,geminiweb-pa.clients6.google.com
 DOMAIN,gspe1-ssl.ls.apple.com
+DOMAIN,http-intake.logs.us5.datadoghq.com
 DOMAIN,idetoolkits-hostedfiles.amazonaws.com
 DOMAIN,idetoolkits.amazonwebservices.com
 DOMAIN,in.appcenter.ms
@@ -50,6 +51,7 @@ DOMAIN,llama.developer.meta.com
 DOMAIN,location.microsoft.com
 DOMAIN,notebooklm-pa.googleapis.com
 DOMAIN,notebooklm.googleapis.com
+DOMAIN,o1158394.ingest.us.sentry.io
 DOMAIN,o33249.ingest.sentry.io
 DOMAIN,o33249.ingest.us.sentry.io
 DOMAIN,odc.officeapps.live.com

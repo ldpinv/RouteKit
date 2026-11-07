@@ -75,12 +75,12 @@
       {
         "path": "Surge/domains/ai-cn.list",
         "resolver": "domestic",
-        "rules": 140
+        "rules": 148
       },
       {
         "path": "Surge/domains/ai.list",
         "resolver": "overseas",
-        "rules": 366
+        "rules": 368
       },
       {
         "path": "Surge/domains/paypal.list",
@@ -125,7 +125,7 @@
       {
         "path": "Surge/dns/mainland.list",
         "resolver": "domestic",
-        "rules": 7862
+        "rules": 7956
       },
       {
         "path": "Surge/domains/global.list",
@@ -180,7 +180,7 @@
       "path": "Surge/services/speedtest.txt",
       "placement": "after-google-before-general",
       "policy": "Final",
-      "rules": 3472
+      "rules": 3478
     },
     {
       "path": "Surge/services/microsoft.list",
@@ -302,13 +302,13 @@
       "path": "domains/ai-cn",
       "phase": "domains",
       "policy": "Internal",
-      "rules": 140
+      "rules": 148
     },
     {
       "path": "domains/ai",
       "phase": "domains",
       "policy": "AI",
-      "rules": 366
+      "rules": 368
     },
     {
       "path": "domains/paypal",
@@ -362,7 +362,7 @@
       "path": "domains/internal",
       "phase": "domains",
       "policy": "Internal",
-      "rules": 7355
+      "rules": 7431
     },
     {
       "path": "domains/global",
