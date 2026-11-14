@@ -85,6 +85,37 @@ class RuleSemantics(unittest.TestCase):
         self.assertFalse(rk.domain_match(rule, "unrelated.webpubsub.azure.com"))
         self.assertFalse(rk.domain_match(rule, "chatgpt-async-webps-prod-x-1.webpubsub.azure.com.evil.example"))
 
+    def test_manual_wildcards_require_a_fixed_domain_boundary(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "reject.list"
+            path.write_text("DOMAIN-WILDCARD,*pcdn*.biliapi.net\n")
+            self.assertEqual(rk.parse_manual(path), [rk.Rule("DOMAIN-WILDCARD", "*pcdn*.biliapi.net")])
+            for pattern in ["*.com", "pcdn.*.net", "*pcdn*.*.*", "*pcdn*..net"]:
+                with self.subTest(pattern=pattern), self.assertRaises(ValueError):
+                    path.write_text("DOMAIN-WILDCARD," + pattern + "\n")
+                    rk.parse_manual(path)
+
+    def test_manual_wildcard_conflicts_stop_the_build(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / ".github").mkdir()
+            (root / "Source").mkdir()
+            config = {
+                "order": ["reject", "bilibili"],
+                "categories": {"reject": {"policy": "REJECT"}, "bilibili": {"policy": "Bilibili"}},
+                "sources": [], "exclusions": [], "replacements": [],
+            }
+            (root / ".github/sources.json").write_text(json.dumps(config))
+            (root / "Source/reject.list").write_text("DOMAIN-WILDCARD,*pcdn*.biliapi.net\n")
+            for other in ["DOMAIN,edge-pcdn.biliapi.net", "DOMAIN-SUFFIX,biliapi.net", "DOMAIN-WILDCARD,*edge*.biliapi.net"]:
+                (root / "Source/bilibili.list").write_text(other + "\n")
+                with self.subTest(other=other), self.assertRaisesRegex(ValueError, "Conflicting overrides"):
+                    rk.compile_rules(root, {"vendor/v2fly/data.json": b"{}"}, {})
+        wildcard = rk.Rule("DOMAIN-WILDCARD", "*pcdn*.biliapi.net")
+        for other in [rk.Rule("DOMAIN", "api.biliapi.net"), rk.Rule("DOMAIN-SUFFIX", "other-biliapi.net")]:
+            self.assertFalse(rk.overlaps(wildcard, other))
+            self.assertFalse(rk.overlaps(other, wildcard))
+
 
 class CompiledRules(unittest.TestCase):
     @classmethod
@@ -94,6 +125,22 @@ class CompiledRules(unittest.TestCase):
 
     def test_business_requests(self):
         self.assertGreaterEqual(rk.validate_behavior(ROOT, self.base, self.overrides), 40)
+
+    def test_bilibili_pcdn_blocking_preserves_regular_cdn(self):
+        categories = rk.ordered_categories(rk.read_json(ROOT / ".github/sources.json"))
+        cases = {
+            "pcdn.biliapi.net": "REJECT", "foo-PCDN-01.biliapi.net.": "REJECT",
+            "mcdn.bilivideo.cn": "REJECT", "video.mcdn.bilivideo.com": "REJECT",
+            "node.szbdyd.com": "REJECT", "node.mountaintoys.cn": "REJECT",
+            "api.biliapi.net": "Bilibili", "www.bilibili.com": "Bilibili",
+            "upos-sz-mirrorali.bilivideo.com": "Bilibili",
+            "upos-sz-mirrorali.bilivideo.cn": "Bilibili", "notmcdn.bilivideo.com": "Bilibili",
+            "foo-pcdn.biliapi.net.evil.example": "Final", "notszbdyd.com": "Final",
+            "mountaintoys.cn.evil.example": "Final", "pcdn.example.org": "Final",
+        }
+        for host, expected in cases.items():
+            with self.subTest(host=host):
+                self.assertEqual(rk.route(self.base, self.overrides, categories, host), expected)
 
     def test_client_outputs_preserve_the_same_rules(self):
         for path, data in self.outputs.items():

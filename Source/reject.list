@@ -1,0 +1,7 @@
+# Bilibili PCDN avoidance; the client assigns REJECT to custom/reject.
+# Keep before the general Bilibili rules. Playback fallback/speed need device testing.
+DOMAIN-WILDCARD,*pcdn*.biliapi.net
+DOMAIN-SUFFIX,mcdn.bilivideo.cn
+DOMAIN-SUFFIX,mcdn.bilivideo.com
+DOMAIN-SUFFIX,szbdyd.com
+DOMAIN-SUFFIX,mountaintoys.cn

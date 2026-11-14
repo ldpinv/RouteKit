@@ -1,4 +1,10 @@
 # RouteKit / reject
 # Generated; edit Source/<category>.list. Sources and licenses: https://github.com/ldpinv/RouteKit
 no_resolve: true
-domain_set: []
+domain_suffix_set:
+  - "mcdn.bilivideo.cn"
+  - "mcdn.bilivideo.com"
+  - "mountaintoys.cn"
+  - "szbdyd.com"
+domain_wildcard_set:
+  - "*pcdn*.biliapi.net"

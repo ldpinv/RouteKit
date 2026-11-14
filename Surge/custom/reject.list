@@ -1,2 +1,7 @@
 # RouteKit / reject
 # Generated; edit Source/<category>.list. Sources and licenses: https://github.com/ldpinv/RouteKit
+DOMAIN-SUFFIX,mcdn.bilivideo.cn
+DOMAIN-SUFFIX,mcdn.bilivideo.com
+DOMAIN-SUFFIX,mountaintoys.cn
+DOMAIN-SUFFIX,szbdyd.com
+DOMAIN-WILDCARD,*pcdn*.biliapi.net

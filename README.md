@@ -25,7 +25,9 @@ DOMAIN,api.example.org
 DOMAIN-SUFFIX,example.ai
 ```
 
-文件使用 Surge 规则语法，支持 `DOMAIN`、`DOMAIN-SUFFIX`、`IP-CIDR`、`IP-CIDR6`，不要填写策略名。人工规则优先于上游分类；不同策略的人工规则冲突时停止构建。IP 自动添加 `no-resolve`。
+文件使用 Surge 规则语法，支持 `DOMAIN`、`DOMAIN-SUFFIX`、`DOMAIN-WILDCARD`、`IP-CIDR`、`IP-CIDR6`，不要填写策略名。人工通配符后必须保留至少两层固定域名，例如 `*pcdn*.biliapi.net`；不接受 `*.com`、`pcdn.*.net` 等宽泛模式。人工规则优先于上游分类；不同策略的人工规则冲突或通配符存在潜在重叠时停止构建。IP 自动添加 `no-resolve`。
+
+`Source/reject.list` 维护人工屏蔽项；Bilibili PCDN 规则经已有的 `custom/reject` 入口先于普通 Bilibili 规则匹配。Surge 输出 `DOMAIN-WILDCARD`，Egern 输出带引号的 `domain_wildcard_set`。这些规则用于让播放器避开指定的 PCDN 候选源，实际速度和播放回退需在设备上验证；不屏蔽整个 `bilivideo.com` / `bilivideo.cn`。
 
 直接在 GitHub 编辑并提交 `Source/` 后，Workflow 校验并生成两端规则。上游每天 **02:23 UTC** 检查一次，通过 PR 更新，合并后生效；不自动合并。
 

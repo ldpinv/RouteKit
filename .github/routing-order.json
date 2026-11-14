@@ -218,7 +218,7 @@
       "path": "custom/reject",
       "phase": "custom",
       "policy": "REJECT",
-      "rules": 0
+      "rules": 5
     },
     {
       "path": "custom/ai-cn",

@@ -120,6 +120,62 @@
     "policy": "Bilibili"
   },
   {
+    "host": "foo-pcdn-01.biliapi.net",
+    "policy": "REJECT"
+  },
+  {
+    "host": "pcdn.biliapi.net",
+    "policy": "REJECT"
+  },
+  {
+    "host": "mcdn.bilivideo.cn",
+    "policy": "REJECT"
+  },
+  {
+    "host": "video.mcdn.bilivideo.com",
+    "policy": "REJECT"
+  },
+  {
+    "host": "node.szbdyd.com",
+    "policy": "REJECT"
+  },
+  {
+    "host": "node.mountaintoys.cn",
+    "policy": "REJECT"
+  },
+  {
+    "host": "api.biliapi.net",
+    "policy": "Bilibili"
+  },
+  {
+    "host": "upos-sz-mirrorali.bilivideo.com",
+    "policy": "Bilibili"
+  },
+  {
+    "host": "upos-sz-mirrorali.bilivideo.cn",
+    "policy": "Bilibili"
+  },
+  {
+    "host": "notmcdn.bilivideo.com",
+    "policy": "Bilibili"
+  },
+  {
+    "host": "foo-pcdn.biliapi.net.evil.example",
+    "policy": "Final"
+  },
+  {
+    "host": "notszbdyd.com",
+    "policy": "Final"
+  },
+  {
+    "host": "mountaintoys.cn.evil.example",
+    "policy": "Final"
+  },
+  {
+    "host": "pcdn.example.org",
+    "policy": "Final"
+  },
+  {
     "host": "www.bilibili.tv",
     "policy": "Streaming"
   },

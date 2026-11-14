@@ -160,6 +160,12 @@ class DLC:
         return result
 
 
+def wildcard_suffix(pattern):
+    parts = pattern.split(".")
+    last = max(i for i, part in enumerate(parts) if any(c in part for c in "*?"))
+    return ".".join(parts[last + 1:])
+
+
 def parse_manual(path):
     result = []
     if not path.exists():
@@ -175,7 +181,13 @@ def parse_manual(path):
             raise ValueError(f"Unexpected policy/parameter in {path.name}:{num}")
         if parts[2:] and parts[0] not in IP_KINDS:
             raise ValueError("no-resolve belongs on IP rules")
-        result.append(normalize(parts[0], parts[1]))
+        rule = normalize(parts[0], parts[1])
+        if rule.kind == "DOMAIN-WILDCARD":
+            suffix = wildcard_suffix(rule.value)
+            if len(suffix.split(".")) < 2:
+                raise ValueError("Manual wildcards need at least two fixed trailing domain labels")
+            normalize("DOMAIN-SUFFIX", suffix)
+        result.append(rule)
     return result
 
 
@@ -294,6 +306,17 @@ def render(rules, category, fmt):
 
 def overlaps(a, b):
     if a.kind in DOMAIN_KINDS and b.kind in DOMAIN_KINDS:
+        if a.kind == "DOMAIN-WILDCARD" or b.kind == "DOMAIN-WILDCARD":
+            if a.kind == "DOMAIN":
+                return domain_match(b, a.value)
+            if b.kind == "DOMAIN":
+                return domain_match(a, b.value)
+            # Reject potential cross-policy conflicts conservatively: glob stars
+            # can span dots, so overlapping fixed suffixes need manual review.
+            a = Rule("DOMAIN-SUFFIX", wildcard_suffix(a.value)) if a.kind == "DOMAIN-WILDCARD" else a
+            b = Rule("DOMAIN-SUFFIX", wildcard_suffix(b.value)) if b.kind == "DOMAIN-WILDCARD" else b
+            if not a.value or not b.value:
+                return True
         return ((a.value == b.value) or (a.kind == "DOMAIN-SUFFIX" and domain_match(a, b.value))
                 or (b.kind == "DOMAIN-SUFFIX" and domain_match(b, a.value)))
     if a.kind == b.kind and a.kind in IP_KINDS:
@@ -396,8 +419,6 @@ def compile_rules(root, blobs, lock):
     for category in categories:
         base[category] = minimize(raw[category])
         overrides[category] = minimize(parse_manual(root / "Source" / f"{category}.list"))
-        if any(r.kind == "DOMAIN-WILDCARD" for r in overrides[category]):
-            raise ValueError("Source lists use exact/suffix/IP rules; reviewed upstream wildcards belong in .github/sources.json replacements")
     # A manual override may overlap upstream intentionally; conflicting overrides are errors.
     for i, a in enumerate(categories):
         for b in list(categories)[i + 1:]:
