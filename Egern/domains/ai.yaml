@@ -45,7 +45,6 @@ domain_set:
   - "geminiweb-pa.clients.google.com"
   - "geminiweb-pa.clients6.google.com"
   - "gspe1-ssl.ls.apple.com"
-  - "http-intake.logs.us5.datadoghq.com"
   - "idetoolkits-hostedfiles.amazonaws.com"
   - "idetoolkits.amazonwebservices.com"
   - "in.appcenter.ms"

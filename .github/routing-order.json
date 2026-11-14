@@ -80,7 +80,7 @@
       {
         "path": "Surge/domains/ai.list",
         "resolver": "overseas",
-        "rules": 370
+        "rules": 369
       },
       {
         "path": "Surge/domains/paypal.list",
@@ -130,7 +130,7 @@
       {
         "path": "Surge/domains/global.list",
         "resolver": "overseas",
-        "rules": 4636
+        "rules": 4638
       }
     ],
     "upstreams": {
@@ -180,7 +180,7 @@
       "path": "Surge/services/speedtest.txt",
       "placement": "after-google-before-general",
       "policy": "Final",
-      "rules": 3488
+      "rules": 3494
     },
     {
       "path": "Surge/services/microsoft.list",
@@ -308,7 +308,7 @@
       "path": "domains/ai",
       "phase": "domains",
       "policy": "AI",
-      "rules": 370
+      "rules": 369
     },
     {
       "path": "domains/paypal",
@@ -368,13 +368,13 @@
       "path": "domains/global",
       "phase": "domains",
       "policy": "Global",
-      "rules": 4636
+      "rules": 4638
     },
     {
       "path": "ip/ai",
       "phase": "ip",
       "policy": "AI",
-      "rules": 421
+      "rules": 538
     },
     {
       "path": "ip/telegram",
