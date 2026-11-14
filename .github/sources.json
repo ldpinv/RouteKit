@@ -297,6 +297,11 @@
   "exclusions": [
     {
       "category": "ai",
+      "rule": "DOMAIN,http-intake.logs.us5.datadoghq.com",
+      "reason": "Shared Datadog regional log intake; the hostname does not identify a Claude-specific tenant. Preserve precise service-owned or tenant-specific endpoints instead."
+    },
+    {
+      "category": "ai",
       "rule": "DOMAIN,browser-intake-datadoghq.com",
       "reason": "Shared authentication/telemetry infrastructure. Preserve service-specific tenant hostnames instead of routing every customer through AI."
     },

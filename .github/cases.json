@@ -308,6 +308,22 @@
     "policy": "Final"
   },
   {
+    "host": "http-intake.logs.us5.datadoghq.com",
+    "policy": "Final"
+  },
+  {
+    "host": "o1158394.ingest.us.sentry.io",
+    "policy": "AI"
+  },
+  {
+    "host": "production-copilot-host-westus.webpubsub.azure.com",
+    "policy": "AI"
+  },
+  {
+    "host": "grokbot.com",
+    "policy": "AI"
+  },
+  {
     "host": "queue.fal.run",
     "policy": "AI"
   },
