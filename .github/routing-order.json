@@ -10,7 +10,7 @@
       {
         "path": "Surge/dns/override-domestic.list",
         "resolver": "domestic",
-        "rules": 0
+        "rules": 56
       },
       {
         "path": "Surge/custom/ai-cn.list",
@@ -45,12 +45,12 @@
       {
         "path": "Surge/custom/apple-cn.list",
         "resolver": "domestic",
-        "rules": 0
+        "rules": 24
       },
       {
         "path": "Surge/custom/apple.list",
         "resolver": "overseas",
-        "rules": 0
+        "rules": 1
       },
       {
         "path": "Surge/custom/google.list",
@@ -105,12 +105,12 @@
       {
         "path": "Surge/domains/apple-cn.list",
         "resolver": "domestic",
-        "rules": 166
+        "rules": 8
       },
       {
         "path": "Surge/domains/apple.list",
         "resolver": "overseas",
-        "rules": 1548
+        "rules": 1580
       },
       {
         "path": "Surge/domains/google.list",
@@ -218,7 +218,7 @@
       "path": "custom/reject",
       "phase": "custom",
       "policy": "REJECT",
-      "rules": 0
+      "rules": 5
     },
     {
       "path": "custom/ai-cn",
@@ -260,13 +260,13 @@
       "path": "custom/apple-cn",
       "phase": "custom",
       "policy": "DIRECT",
-      "rules": 0
+      "rules": 24
     },
     {
       "path": "custom/apple",
       "phase": "custom",
       "policy": "Apple",
-      "rules": 0
+      "rules": 1
     },
     {
       "path": "custom/google",
@@ -338,13 +338,13 @@
       "path": "domains/apple-cn",
       "phase": "domains",
       "policy": "DIRECT",
-      "rules": 166
+      "rules": 8
     },
     {
       "path": "domains/apple",
       "phase": "domains",
       "policy": "Apple",
-      "rules": 1548
+      "rules": 1580
     },
     {
       "path": "domains/google",

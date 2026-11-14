@@ -25,7 +25,9 @@ DOMAIN,api.example.org
 DOMAIN-SUFFIX,example.ai
 ```
 
-文件使用 Surge 规则语法，支持 `DOMAIN`、`DOMAIN-SUFFIX`、`IP-CIDR`、`IP-CIDR6`，不要填写策略名。人工规则优先于上游分类；不同策略的人工规则冲突时停止构建。IP 自动添加 `no-resolve`。
+文件使用 Surge 规则语法，支持 `DOMAIN`、`DOMAIN-SUFFIX`、`DOMAIN-WILDCARD`、`IP-CIDR`、`IP-CIDR6`，不要填写策略名。人工通配符后必须保留至少两层固定域名，例如 `*pcdn*.biliapi.net`；不接受 `*.com`、`pcdn.*.net` 等宽泛模式。人工规则优先于上游分类；不同策略的人工规则冲突或通配符存在潜在重叠时停止构建。IP 自动添加 `no-resolve`。
+
+`Source/reject.list` 维护人工屏蔽项；Bilibili PCDN 规则经已有的 `custom/reject` 入口先于普通 Bilibili 规则匹配。Surge 输出 `DOMAIN-WILDCARD`，Egern 输出带引号的 `domain_wildcard_set`。这些规则用于让播放器避开指定的 PCDN 候选源，实际速度和播放回退需在设备上验证；不屏蔽整个 `bilivideo.com` / `bilivideo.cn`。
 
 直接在 GitHub 编辑并提交 `Source/` 后，Workflow 校验并生成两端规则。上游每天 **02:23 UTC** 检查一次，通过 PR 更新，合并后生效；不自动合并。
 
@@ -68,6 +70,8 @@ services 仍放在原配置对应的位置：广告在 custom 之后、AI 之前
 
 如需单独改变 DNS，在 `Source/dns-domestic.list` 或 `Source/dns-overseas.list` 添加 DOMAIN / DOMAIN-SUFFIX；这些文件只改变 DNS，不改变路由策略。两个 DNS 覆盖文件有冲突时构建失败。首次接入后，已有 DNS 引用地址固定，日常改 Source 即可。
 
+Apple 的下载、更新、App Store / Music 内容 CDN 在 `Source/dns-domestic.list` 中保留国内 DNS，路由仍由 Apple 组选择。这份人工选择的子域集合取自锁定的 Sukka Apple CDN 快照，不自动扩大到上游全部新条目；新增 DNS 覆盖时必须核对业务范围，测试会阻止它截获海外 AI 域名。普通 Apple 账号、Siri、天气、定位等沿用海外 DNS 分类。代理协议自行在出口解析时不使用这里的本地解析结果。
+
 本地名称使用系统 DNS，其他未知域名的本地解析默认使用海外 DNS。`no-resolve` 和代理协议决定是否需要本地解析；这些片段不强制每个代理出口重新解析，也不改变 `proxy_nameservers`。片段是生成的配置参考，不能把整个片段作为普通分流 rule_set 导入。Surge 须使用支持 Host 远程规则集映射的版本；移动端需实际导入验证。
 
 ## 客户端接入
@@ -104,6 +108,10 @@ Surge 使用 `RULE-SET` 和 `.list`；Egern 使用原生 `rule_set` 和 `.yaml`�
 | 13 | global | Global |
 
 这些文件分类不增加策略组。`custom/` 中的空产物用于预留固定入口，首次接入后添加自定义规则就不用修改主配置。核心 `domains/reject` 默认为空；原配置的广告列表在 `services/` 中独立维护。完整生成顺序见 [.github/routing-order.json](.github/routing-order.json)。
+
+Apple 按三层处理：Apple Intelligence / Private Cloud Compute 的已知 relay 域名优先走 AI；明确的中国区服务（Apple 中国站、iCloud 中国区、`apzones.com`、带明确中国区标识的地图/支付等端点）走 apple-cn → DIRECT；其余下载、更新、音乐、证书、普通 Siri/天气/定位及账号服务走 Apple 组。Apple 组可默认 DIRECT 并保留手动出口选择，Apple TV / News 也保留在 Apple。中国区标识不代表每个端点都已实测必须使用中国大陆 IP；DIRECT 使用的是设备当前网络。
+
+Sukka Apple CDN 作为普通 Apple 路由上游自动更新；`Source/apple-cn.list` 只补充审核过的中国区例外，`Source/apple.list` 补充 `networking.apple`。不会把共享 CDN 整段或整个 `.apple` 顶级域纳入 Apple；规则和 DNS 复用已有入口地址，客户端不用为此更换 URL。
 
 例如海外 AI 的地址：
 

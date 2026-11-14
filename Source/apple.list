@@ -1,0 +1,4 @@
+# Apple 专用 .apple 域名补充，避免把整个顶级域加入业务规则。
+# 包含 app-site-association.networking.apple（App/网站关联校验）。
+# https://support.apple.com/en-us/101555
+DOMAIN-SUFFIX,networking.apple

@@ -1,0 +1,33 @@
+# 中国区专用服务补充；生成 custom/apple-cn，策略为 DIRECT。
+# Sukka apple_cn 继续提供 apple.com.cn / icloud.com.cn 等基本中国区服务。
+# 下列明确带中国区标识的服务/CNAME 从原 Sukka apple_cdn 中保留；
+# 普通下载、音乐、Siri、天气和定位不在这里，交给 Apple 策略组。
+# 中国区标识不表示已经实测这些服务必须使用中国大陆 IP。
+# 来源与许可：NOTICE.md；上游固定版本见 .github/sources.lock.json。
+DOMAIN-SUFFIX,cdn-cn1.apple-mapkit.com
+DOMAIN-SUFFIX,cdn-cn2.apple-mapkit.com
+DOMAIN-SUFFIX,cdn-cn3.apple-mapkit.com
+DOMAIN-SUFFIX,cdn-cn4.apple-mapkit.com
+DOMAIN-SUFFIX,cl2-cn.apple.com
+DOMAIN-SUFFIX,cl4-cn.apple.com
+DOMAIN-SUFFIX,cn-smp-paymentservices.apple.com
+DOMAIN-SUFFIX,gsp10-ssl-cn.ls.apple.com
+DOMAIN-SUFFIX,gsp11-cn.ls.apple.com
+DOMAIN-SUFFIX,gsp12-cn.ls.apple.com
+DOMAIN-SUFFIX,gsp13-cn.ls.apple.com
+DOMAIN-SUFFIX,gsp4-cn.ls.apple.com
+DOMAIN-SUFFIX,gsp4-cn.ls.apple.com.edgekey.net.globalredir.akadns.net
+DOMAIN-SUFFIX,gsp5-cn.ls.apple.com
+DOMAIN-SUFFIX,gsp85-cn-ssl.ls.apple.com
+DOMAIN-SUFFIX,gspe11-2-cn-ssl.ls.apple.com
+DOMAIN-SUFFIX,gspe19-2-cn-ssl.ls.apple.com
+DOMAIN-SUFFIX,gspe19-2-cn-ssl.ls-apple.com.akadns.net
+DOMAIN-SUFFIX,gspe19-cn.ls.apple.com
+DOMAIN-SUFFIX,gspe19-cn.ls-apple.com.akadns.net
+DOMAIN-SUFFIX,gspe79-cn-ssl.ls.apple.com
+DOMAIN-SUFFIX,mesu-china.apple.com.akadns.net
+DOMAIN-SUFFIX,support-china.apple-support.akadns.net
+
+# Apple 官方将 apzones.com 列为中国大陆 iCloud 服务。
+# https://support.apple.com/en-us/101555
+DOMAIN-SUFFIX,apzones.com

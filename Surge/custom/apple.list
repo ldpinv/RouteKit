@@ -1,2 +1,3 @@
 # RouteKit / apple
 # Generated; edit Source/<category>.list. Sources and licenses: https://github.com/ldpinv/RouteKit
+DOMAIN-SUFFIX,networking.apple

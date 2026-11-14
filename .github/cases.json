@@ -120,6 +120,62 @@
     "policy": "Bilibili"
   },
   {
+    "host": "foo-pcdn-01.biliapi.net",
+    "policy": "REJECT"
+  },
+  {
+    "host": "pcdn.biliapi.net",
+    "policy": "REJECT"
+  },
+  {
+    "host": "mcdn.bilivideo.cn",
+    "policy": "REJECT"
+  },
+  {
+    "host": "video.mcdn.bilivideo.com",
+    "policy": "REJECT"
+  },
+  {
+    "host": "node.szbdyd.com",
+    "policy": "REJECT"
+  },
+  {
+    "host": "node.mountaintoys.cn",
+    "policy": "REJECT"
+  },
+  {
+    "host": "api.biliapi.net",
+    "policy": "Bilibili"
+  },
+  {
+    "host": "upos-sz-mirrorali.bilivideo.com",
+    "policy": "Bilibili"
+  },
+  {
+    "host": "upos-sz-mirrorali.bilivideo.cn",
+    "policy": "Bilibili"
+  },
+  {
+    "host": "notmcdn.bilivideo.com",
+    "policy": "Bilibili"
+  },
+  {
+    "host": "foo-pcdn.biliapi.net.evil.example",
+    "policy": "Final"
+  },
+  {
+    "host": "notszbdyd.com",
+    "policy": "Final"
+  },
+  {
+    "host": "mountaintoys.cn.evil.example",
+    "policy": "Final"
+  },
+  {
+    "host": "pcdn.example.org",
+    "policy": "Final"
+  },
+  {
     "host": "www.bilibili.tv",
     "policy": "Streaming"
   },
@@ -129,11 +185,11 @@
   },
   {
     "host": "www.apple.com",
-    "policy": "DIRECT"
+    "policy": "Apple"
   },
   {
     "host": "gs-loc.apple.com",
-    "policy": "DIRECT"
+    "policy": "Apple"
   },
   {
     "host": "www.baidu.com",
@@ -330,5 +386,133 @@
   {
     "host": "v3b.fal.media",
     "policy": "AI"
+  },
+  {
+    "host": "apple-relay.apple.com",
+    "policy": "AI"
+  },
+  {
+    "host": "apple-relay.cloudflare.com",
+    "policy": "AI"
+  },
+  {
+    "host": "apple-relay.fastly-edge.com",
+    "policy": "AI"
+  },
+  {
+    "host": "cp4.cloudflare.com",
+    "policy": "AI"
+  },
+  {
+    "host": "gspe1-ssl.ls.apple.com",
+    "policy": "AI"
+  },
+  {
+    "host": "www.apple.com.cn",
+    "policy": "DIRECT"
+  },
+  {
+    "host": "setup.icloud.com.cn",
+    "policy": "DIRECT"
+  },
+  {
+    "host": "gateway.apzones.com",
+    "policy": "DIRECT"
+  },
+  {
+    "host": "cn.ls.apple.com",
+    "policy": "DIRECT"
+  },
+  {
+    "host": "cn-smp-paymentservices.apple.com",
+    "policy": "DIRECT"
+  },
+  {
+    "host": "cdn-cn1.apple-mapkit.com",
+    "policy": "DIRECT"
+  },
+  {
+    "host": "gs-loc-cn.apple.com",
+    "policy": "DIRECT"
+  },
+  {
+    "host": "swcdn.apple.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "mesu.apple.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "updates.cdn-apple.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "download.developer.apple.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "play.itunes.apple.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "amp-api.music.apple.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "ocsp.apple.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "guzzoni.apple.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "weatherkit.apple.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "account.apple.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "courier.push.apple.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "mask.icloud.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "tv.apple.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "news.apple.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "appleintelligencefeedback.care.apple.com",
+    "policy": "Apple"
+  },
+  {
+    "host": "app-site-association.networking.apple",
+    "policy": "Apple"
+  },
+  {
+    "host": "notapzones.com",
+    "policy": "Final"
+  },
+  {
+    "host": "apzones.com.attacker.example",
+    "policy": "Final"
+  },
+  {
+    "host": "networking.apple.attacker.example",
+    "policy": "Final"
+  },
+  {
+    "host": "unrelated.apple",
+    "policy": "Final"
   }
 ]
