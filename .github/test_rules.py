@@ -142,6 +142,63 @@ class CompiledRules(unittest.TestCase):
             with self.subTest(host=host):
                 self.assertEqual(rk.route(self.base, self.overrides, categories, host), expected)
 
+    def test_apple_routing_layers(self):
+        # Direct assertions also catch accidental manual overrides; the general
+        # behavior validator intentionally permits explicit custom policy moves.
+        categories = rk.ordered_categories(rk.read_json(ROOT / ".github/sources.json"))
+        groups = {
+            "AI": ["apple-relay.apple.com", "apple-relay.cloudflare.com",
+                   "apple-relay.fastly-edge.com", "cp4.cloudflare.com", "gspe1-ssl.ls.apple.com"],
+            "DIRECT": ["www.apple.com.cn", "setup.icloud.com.cn", "gateway.apzones.com",
+                       "api.smoot.apple.cn", "cn.ls.apple.com", "gs-loc-cn.apple.com",
+                       "cn-smp-paymentservices.apple.com", "cdn-cn1.apple-mapkit.com",
+                       "cl2-cn.apple.com", "gsp4-cn.ls.apple.com.edgekey.net.globalredir.akadns.net",
+                       "gspe19-2-cn-ssl.ls-apple.com.akadns.net", "mesu-china.apple.com.akadns.net"],
+            "Apple": ["www.apple.com", "swcdn.apple.com", "swscan.apple.com", "mesu.apple.com",
+                      "appldnld.apple.com", "updates.cdn-apple.com", "download.developer.apple.com",
+                      "play.itunes.apple.com", "apps.mzstatic.com", "amp-api.music.apple.com",
+                      "amp-api.media.apple.com", "ocsp.apple.com", "valid.apple.com",
+                      "guzzoni.apple.com", "probe.siri.apple.com", "gs-loc.apple.com",
+                      "weatherkit.apple.com", "configuration.apple.com", "account.apple.com",
+                      "setup.icloud.com", "courier.push.apple.com", "mask.icloud.com",
+                      "tv.apple.com", "news.apple.com", "appleintelligencefeedback.care.apple.com",
+                      "app-site-association.networking.apple", "appletvapp.apple"],
+            "Final": ["notapzones.com", "apzones.com.attacker.example",
+                      "networking.apple.attacker.example", "unrelated.apple",
+                      "swcdn.apple.com.attacker.example"],
+        }
+        for expected, hosts in groups.items():
+            for host in hosts:
+                with self.subTest(host=host):
+                    self.assertEqual(rk.route(self.base, self.overrides, categories, host), expected)
+
+    def test_apple_cdn_dns_does_not_choose_the_route(self):
+        dns = json.loads(self.outputs[".github/routing-order.json"])["dns"]
+        categories = rk.ordered_categories(rk.read_json(ROOT / ".github/sources.json"))
+        for host in ["swcdn.apple.com", "updates.cdn-apple.com", "mesu.apple.com",
+                     "download.developer.apple.com", "play.itunes.apple.com",
+                     "amp-api.music.apple.com", "apps.mzstatic.com"]:
+            with self.subTest(host=host):
+                self.assertEqual(rk.route(self.base, self.overrides, categories, host), "Apple")
+                self.assertEqual(managed.dns_match(host, dns, self.outputs, rk), "domestic")
+        for host in ["apple-relay.apple.com", "apple-relay.cloudflare.com", "apple-relay.fastly-edge.com",
+                     "cp4.cloudflare.com", "gspe1-ssl.ls.apple.com", "account.apple.com",
+                     "mask.icloud.com", "guzzoni.apple.com", "gs-loc.apple.com",
+                     "weatherkit.apple.com", "app-site-association.networking.apple"]:
+            with self.subTest(host=host):
+                self.assertEqual(managed.dns_match(host, dns, self.outputs, rk), "overseas")
+        for host in ["setup.icloud.com.cn", "gateway.apzones.com", "cn.ls.apple.com",
+                     "cdn-cn1.apple-mapkit.com", "cn-smp-paymentservices.apple.com"]:
+            with self.subTest(host=host):
+                self.assertEqual(managed.dns_match(host, dns, self.outputs, rk), "domestic")
+
+    def test_domestic_dns_overrides_cannot_capture_ai(self):
+        domestic = rk.parse_manual(ROOT / "Source/dns-domestic.list")
+        protected = [r for c in (self.base, self.overrides) for r in c["ai"] if r.kind in rk.DOMAIN_KINDS]
+        for override in domestic:
+            for ai_rule in protected:
+                self.assertFalse(rk.overlaps(override, ai_rule), (override, ai_rule))
+
     def test_client_outputs_preserve_the_same_rules(self):
         for path, data in self.outputs.items():
             if not path.startswith("Surge/") or any(part in path for part in ("/macos-process/", "/services/", "/dns/")):
@@ -184,7 +241,7 @@ class CompiledRules(unittest.TestCase):
             "generativelanguage.googleapis.com": "overseas", "api.githubcopilot.com": "overseas",
             "www.youtube.com": "overseas", "www.paypal.com": "overseas",
             "api.deepseek.com": "domestic", "www.doubao.com": "domestic",
-            "www.bilibili.com": "domestic", "gs-loc.apple.com": "domestic",
+            "www.bilibili.com": "domestic", "gs-loc.apple.com": "overseas",
             "www.baidu.com": "domestic", "unlisted-routekit.example": "overseas",
             "printer.home.arpa": "system", "router.lan": "system", "printer.local": "system",
             "openai.com.attacker.example": "overseas",

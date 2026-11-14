@@ -183,7 +183,7 @@
     },
     {
       "id": "sukka-apple-cdn",
-      "category": "apple-cn",
+      "category": "apple",
       "repository": "sukka",
       "path": "List/domainset/apple_cdn.conf",
       "snapshot": "vendor/sukka/List/domainset/apple_cdn.conf",
@@ -295,6 +295,11 @@
     }
   ],
   "exclusions": [
+    {
+      "category": "apple-cn",
+      "rule": "DOMAIN,appleintelligencefeedback.care.apple.com",
+      "reason": "Feedback is an ordinary Apple service, not a China-specific endpoint. Let the Apple policy cover it; Private Cloud Compute relay traffic stays in AI."
+    },
     {
       "category": "ai",
       "rule": "DOMAIN,http-intake.logs.us5.datadoghq.com",

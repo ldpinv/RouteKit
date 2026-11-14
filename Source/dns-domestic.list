@@ -1,0 +1,67 @@
+# 仅选择 DNS，不改变路由；生成已有的 dns/override-domestic.list。
+# Apple 下载/媒体 CDN 交给 Apple 策略组，同时保留国内 DNS 调度。
+# 这是经审核的精确子域集合，不是把所有 Apple 服务送往国内 DNS；
+# Apple Intelligence / PCC、普通账号、Siri、天气、定位仍按业务 DNS 分类。
+# 该覆盖优先于业务分类，新增条目时必须检查是否与 AI 等业务冲突。
+# 选自 Sukka apple_cdn 的固定快照；人工维护，不自动扩展至全部新条目。
+# 来源/许可见 NOTICE.md，固定提交见 .github/sources.lock.json。
+
+# 系统、App 和开发者下载/更新。
+DOMAIN-SUFFIX,adcdownload.apple.com
+DOMAIN-SUFFIX,adcdownload.apple.com.akadns.net
+DOMAIN-SUFFIX,appldnld.apple.com
+DOMAIN-SUFFIX,appldnld.g.aaplimg.com
+DOMAIN-SUFFIX,cds.apple.com
+DOMAIN-SUFFIX,cds.apple.com.akadns.net
+DOMAIN-SUFFIX,cds-cdn.v.aaplimg.com
+DOMAIN-SUFFIX,cdsassets.apple.com
+DOMAIN-SUFFIX,dd-cdn.origin-apple.com.akadns.net
+DOMAIN-SUFFIX,devimages-cdn.apple.com
+DOMAIN-SUFFIX,devstreaming-cdn.apple.com
+DOMAIN-SUFFIX,download.developer.apple.com
+DOMAIN-SUFFIX,iosapps.itunes.g.aaplimg.com
+DOMAIN-SUFFIX,ipcdn.apple.com
+DOMAIN-SUFFIX,mesu.apple.com
+DOMAIN-SUFFIX,mesu-cdn.apple.com.akadns.net
+DOMAIN-SUFFIX,oscdn.apple.com
+DOMAIN-SUFFIX,oscdn.origin-apple.com.akadns.net
+DOMAIN-SUFFIX,osxapps.itunes.g.aaplimg.com
+DOMAIN-SUFFIX,publicassets.cdn-apple.com
+DOMAIN-SUFFIX,swcatalog.apple.com
+DOMAIN-SUFFIX,swcatalog-cdn.apple.com.akadns.net
+DOMAIN-SUFFIX,swcdn.apple.com
+DOMAIN-SUFFIX,swcdn.g.aaplimg.com
+DOMAIN-SUFFIX,swdist.apple.com
+DOMAIN-SUFFIX,swdist.apple.com.akadns.net
+DOMAIN-SUFFIX,swscan.apple.com
+DOMAIN-SUFFIX,swscan-cdn.apple.com.akadns.net
+DOMAIN-SUFFIX,updates.cdn-apple.com
+DOMAIN-SUFFIX,updates-http.cdn-apple.com
+DOMAIN-SUFFIX,updates-http.cdn-apple.com.akadns.net
+
+# App Store / Music 内容及图片。保留现有边界，不扩大到共享 CDN。
+DOMAIN-SUFFIX,a1.mzstatic.com
+DOMAIN-SUFFIX,a2.mzstatic.com
+DOMAIN-SUFFIX,a3.mzstatic.com
+DOMAIN-SUFFIX,a4.mzstatic.com
+DOMAIN-SUFFIX,a5.mzstatic.com
+DOMAIN-SUFFIX,amp-api.media.apple.com
+DOMAIN-SUFFIX,apps.mzstatic.com
+DOMAIN-SUFFIX,is1.mzstatic.com
+DOMAIN-SUFFIX,is1-ssl.mzstatic.com
+DOMAIN-SUFFIX,is2.mzstatic.com
+DOMAIN-SUFFIX,is2-ssl.mzstatic.com
+DOMAIN-SUFFIX,is3.mzstatic.com
+DOMAIN-SUFFIX,is3-ssl.mzstatic.com
+DOMAIN-SUFFIX,is4.mzstatic.com
+DOMAIN-SUFFIX,is4-ssl.mzstatic.com
+DOMAIN-SUFFIX,is5.mzstatic.com
+DOMAIN-SUFFIX,is5-ssl.mzstatic.com
+DOMAIN-SUFFIX,itunes.apple.com
+DOMAIN-SUFFIX,itunes-apple.com.akadns.net
+DOMAIN-SUFFIX,ml.cdn-apple.com
+DOMAIN-SUFFIX,music.apple.com
+DOMAIN-SUFFIX,s.mzstatic.com
+DOMAIN-SUFFIX,shazam-insights.cdn-apple.com
+DOMAIN-SUFFIX,store.storeimages.cdn-apple.com
+DOMAIN-SUFFIX,store.storeimages.apple.com.akadns.net
