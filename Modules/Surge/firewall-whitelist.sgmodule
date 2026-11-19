@@ -1,0 +1,19 @@
+#!name=防火墙自动加白（po0 / guguyun）
+#!desc=切网和启动时加白并在稳定后确认，每 10 分钟兜底，面板可手动刷新。
+#!category=Network
+#!arguments=po0_tokens:"",guguyun_links:""
+#!arguments-desc=po0_tokens 填 po0 令牌，多个用逗号分隔，可加 @槽位。guguyun_links 填 HTTPS 加白分享链接，多个用分号分隔。任一参数可留空。
+
+[Rule]
+# po0 的公开 API；两个厂商的脚本请求同时显式使用 DIRECT。
+IP-CIDR,124.221.69.228/32,DIRECT,no-resolve
+
+[Script]
+firewall-whitelist-network = type=event,event-name=network-changed,script-path=https://raw.githubusercontent.com/ldpinv/RouteKit/main/Scripts/firewall-whitelist/surge.js,timeout=60,argument="po0_tokens={{{po0_tokens}}}&guguyun_links={{{guguyun_links}}}"
+# engine-started 需要 Surge iOS 5.22+ 或 Mac 6.9+。
+firewall-whitelist-start = type=event,event-name=engine-started,script-path=https://raw.githubusercontent.com/ldpinv/RouteKit/main/Scripts/firewall-whitelist/surge.js,timeout=60,argument="po0_tokens={{{po0_tokens}}}&guguyun_links={{{guguyun_links}}}"
+firewall-whitelist-cron = type=cron,cronexp="*/10 * * * *",wake-system=true,script-path=https://raw.githubusercontent.com/ldpinv/RouteKit/main/Scripts/firewall-whitelist/surge.js,timeout=60,argument="po0_tokens={{{po0_tokens}}}&guguyun_links={{{guguyun_links}}}"
+firewall-whitelist-panel = type=generic,script-path=https://raw.githubusercontent.com/ldpinv/RouteKit/main/Scripts/firewall-whitelist/surge.js,timeout=60,argument="po0_tokens={{{po0_tokens}}}&guguyun_links={{{guguyun_links}}}"
+
+[Panel]
+firewall-whitelist = script-name=firewall-whitelist-panel,title="防火墙自动加白",content="点击刷新",update-interval=300

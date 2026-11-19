@@ -1,0 +1,31 @@
+name: 防火墙自动加白（po0 / guguyun）
+description: 切网时加白并在稳定后确认，每 10 分钟检查一次。脚本通过直连请求授权当前出口。
+homepage: https://github.com/ldpinv/RouteKit
+
+compat_arguments:
+  po0_tokens: ""
+  guguyun_links: ""
+compat_arguments_desc: "po0_tokens 填 po0 令牌，多个用逗号分隔，可加 @槽位。guguyun_links 填 HTTPS 加白分享链接，多个用分号分隔。任一参数可留空。"
+
+rules:
+  - ip_cidr:
+      match: 124.221.69.228/32
+      policy: DIRECT
+      no_resolve: true
+
+scriptings:
+  - network:
+      name: firewall-whitelist-network
+      script_url: https://raw.githubusercontent.com/ldpinv/RouteKit/main/Scripts/firewall-whitelist/egern.js
+      timeout: 60
+      env:
+        po0_tokens: "{{{po0_tokens}}}"
+        guguyun_links: "{{{guguyun_links}}}"
+  - schedule:
+      name: firewall-whitelist-cron
+      cron: "*/10 * * * *"
+      script_url: https://raw.githubusercontent.com/ldpinv/RouteKit/main/Scripts/firewall-whitelist/egern.js
+      timeout: 60
+      env:
+        po0_tokens: "{{{po0_tokens}}}"
+        guguyun_links: "{{{guguyun_links}}}"
