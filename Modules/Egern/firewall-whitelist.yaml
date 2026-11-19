@@ -16,7 +16,7 @@ rules:
 scriptings:
   - network:
       name: firewall-whitelist-network
-      script_url: https://raw.githubusercontent.com/ldpinv/RouteKit/preview/firewall-whitelist/Scripts/firewall-whitelist/egern.js
+      script_url: https://raw.githubusercontent.com/ldpinv/RouteKit/main/Scripts/firewall-whitelist/egern.js
       timeout: 60
       env:
         po0_tokens: "{{{po0_tokens}}}"
@@ -24,7 +24,7 @@ scriptings:
   - schedule:
       name: firewall-whitelist-cron
       cron: "*/10 * * * *"
-      script_url: https://raw.githubusercontent.com/ldpinv/RouteKit/preview/firewall-whitelist/Scripts/firewall-whitelist/egern.js
+      script_url: https://raw.githubusercontent.com/ldpinv/RouteKit/main/Scripts/firewall-whitelist/egern.js
       timeout: 60
       env:
         po0_tokens: "{{{po0_tokens}}}"
