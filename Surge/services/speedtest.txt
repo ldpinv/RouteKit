@@ -736,6 +736,7 @@ speedtest.nethiz.net
 speedtest.netpool.in
 speedtest.netrack.ru
 speedtest.oopaya.com
+speedtest.opiquad.it
 speedtest.quadro.net
 speedtest.quickqc.nl
 .speedtest.railtel.in
@@ -1399,8 +1400,10 @@ ookla.soc.atharva.co.id
 ookla.speedtest.cnix.cn
 perf-01.ixn.as42689.net
 prescott1.cabospeed.com
+seednet-hc1.seed.net.tw
 seednet-tc1.seed.net.tw
 seednet-tn1.seed.net.tw
+seednet-tp1.seed.net.tw
 seednet-ty1.seed.net.tw
 sp-chi-01.ezeefiber.net
 sp-sea-01.ezeefiber.net
@@ -1627,6 +1630,7 @@ bytp-speedtest-1.123.net
 cbpuspeed.aspensmart.net
 cesu-hz.zjtelecom.com.cn
 cesu-nb.zjtelecom.com.cn
+dallas.outboundrix.cloud
 dc1-speed1.alpha-tech.us
 fla-st01.provenet.com.br
 fra-eq5-tptest1.31173.se
@@ -1654,6 +1658,7 @@ ooklaspdtstsvr.zitel.com
 reflector.aberythmic.com
 riorancho1.cabospeed.com
 seacaftest.aptalaska.net
+seednet-ntp2.seed.net.tw
 sg-speedtest.fast.net.id
 siouxcity1.cabospeed.com
 sirsa.softechinfosol.com
@@ -2330,6 +2335,7 @@ spdtest.omegatelecom.net.br
 speed.kansas.smishcraft.com
 speed.lax-1.serverforge.org
 speedtest-asiago.wifiweb.it
+speedtest-bne0.encoo.com.au
 speedtest-ist1.netlojik.com
 speedtest-lax.perfectip.net
 speedtest-lhr-01.pdx.net.uk
@@ -2623,6 +2629,7 @@ speedtest10g.atl.as13760.net
 speedtest10g.bhm.as13760.net
 speedtest10g.tpa.as13760.net
 speedtest2.bitsandbyte.co.in
+speedtest2.par2.as216190.net
 speedtest2.phx.1gservers.com
 speedtestalbq.vexusfiber.com
 speedtestapf.gethotwired.com
