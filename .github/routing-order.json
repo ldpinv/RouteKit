@@ -80,7 +80,7 @@
       {
         "path": "Surge/domains/ai.list",
         "resolver": "overseas",
-        "rules": 369
+        "rules": 371
       },
       {
         "path": "Surge/domains/paypal.list",
@@ -110,7 +110,7 @@
       {
         "path": "Surge/domains/apple.list",
         "resolver": "overseas",
-        "rules": 1580
+        "rules": 1450
       },
       {
         "path": "Surge/domains/google.list",
@@ -125,12 +125,12 @@
       {
         "path": "Surge/dns/mainland.list",
         "resolver": "domestic",
-        "rules": 7957
+        "rules": 8001
       },
       {
         "path": "Surge/domains/global.list",
         "resolver": "overseas",
-        "rules": 4638
+        "rules": 4642
       }
     ],
     "upstreams": {
@@ -180,7 +180,7 @@
       "path": "Surge/services/speedtest.txt",
       "placement": "after-google-before-general",
       "policy": "Final",
-      "rules": 3494
+      "rules": 3501
     },
     {
       "path": "Surge/services/microsoft.list",
@@ -192,7 +192,7 @@
       "path": "Surge/services/reject-ip.list",
       "placement": "ip-supplements",
       "policy": "REJECT-DROP",
-      "rules": 784
+      "rules": 783
     },
     {
       "path": "Egern/services/reject.yaml",
@@ -308,7 +308,7 @@
       "path": "domains/ai",
       "phase": "domains",
       "policy": "AI",
-      "rules": 369
+      "rules": 371
     },
     {
       "path": "domains/paypal",
@@ -344,7 +344,7 @@
       "path": "domains/apple",
       "phase": "domains",
       "policy": "Apple",
-      "rules": 1580
+      "rules": 1450
     },
     {
       "path": "domains/google",
@@ -362,19 +362,19 @@
       "path": "domains/internal",
       "phase": "domains",
       "policy": "Internal",
-      "rules": 7431
+      "rules": 7468
     },
     {
       "path": "domains/global",
       "phase": "domains",
       "policy": "Global",
-      "rules": 4638
+      "rules": 4642
     },
     {
       "path": "ip/ai",
       "phase": "ip",
       "policy": "AI",
-      "rules": 538
+      "rules": 409
     },
     {
       "path": "ip/telegram",
